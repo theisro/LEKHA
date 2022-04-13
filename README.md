@@ -1,5 +1,8 @@
 # LEKHA
-CMS for artist organisations
+
+Archiving for artist, collectives and organisations
+
+http://lekha.cc
 
 ## Lists, Exhibition and Knowledge Hierarchies for the Arts - LEKHA
 ## Lists, Exhibition and Knowledge Hueristics for the Arts - LEKHA
