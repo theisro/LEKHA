@@ -1,6 +1,6 @@
 # LEKHA
 
-Archiving for artist, collectives and organisations
+Archiving for artists, collectives and organisations
 
 http://lekha.cc
 
