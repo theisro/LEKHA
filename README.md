@@ -3,6 +3,7 @@
 Archiving for artists, collectives and organisations
 
 http://lekha.cc
+http://theisro.org
 
 ## Lists, Exhibition and Knowledge Hierarchies for the Arts - LEKHA
 ## Lists, Exhibition and Knowledge Hueristics for the Arts - LEKHA
