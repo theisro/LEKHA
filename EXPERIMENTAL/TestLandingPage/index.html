@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        mode: "jit",
+        theme: {
+          extend: {
+            colors: {
+              lblue: "#0033cc",
+            },
+            animation: {
+              marquee: "marquee 25s linear infinite",
+              marquee2: "marquee2 25s linear infinite",
+            },
+            keyframes: {
+              marquee: {
+                "0%": { transform: "translateX(0%)" },
+                "100%": { transform: "translateX(-100%)" },
+              },
+              marquee2: {
+                "0%": { transform: "translateX(100%)" },
+                "100%": { transform: "translateX(0%)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <title>Home | Lekha</title>
+    <style>
+      #getStartedNow::after {
+        content: "Get started now   ›";
+      }
+      #getStartedNow:hover::after {
+        content: "Get started now   ››";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="w-screen h-screen overflow-auto">
+      <div
+        class="bg-cover bg-no-repeat"
+        style="background-image: url(./heroImg.jpg)"
+      >
+        <div
+          class="py-3 px-8 sm:px-24 sticky top-0 text-black border-b flex flex-row justify-between items-center backdrop-filter backdrop-blur-md z-10"
+        >
+          <div class="text-white font-bold">LEKHA</div>
+          <div class="flex flex-row justify-between items-center">
+            <button
+              type="button"
+              class="w-1/3 inline-flex shrink justify-center rounded-full px-4 py-1 text-white font-regular sm:font-medium focus:outline-none sm:w-auto text-xs sm:text-sm"
+              onclick=""
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              class="w-full inline-flex justify-center rounded-full border border-white px-4 py-1 bg-white text-black font-regular sm:font-medium hover:bg-transparent hover:text-white focus:outline-none sm:w-auto text-xs sm:text-sm"
+              onclick=""
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+        <div
+          class="py-4 px-8 sm:px-24 h-screen flex flex-col justify-center backdrop-filter backdrop-blur-sm backdrop-opacity-95 mt-8 ml-8 mr-8 mb-0 sm:mt-24 sm:ml-24 sm:mr-24 sm:mb-0 border border-white"
+        >
+          <div
+            class="text-2xl sm:text-4xl text-white font-bold w-full sm:w-3/5"
+          >
+            THE EASY AND FREE WAY TO CREATE YOUR ARCHIVE
+          </div>
+          <div class="text-lg text-white w-full sm:w-2/3 py-8 drop-shadow-xl">
+            Share your work with the world, through Lekha - an archive by
+            artists, for everyone.
+          </div>
+          <button
+            type="button"
+            id="getStartedNow"
+            class="w-full sm:w-fit inline-flex justify-center rounded-md border border-lblue px-2 sm:px-12 py-4 bg-lblue text-white font-medium focus:outline-none text-lg"
+            onclick=""
+          ></button>
+        </div>
+
+        <div
+          class="relative flex overflow-x-hidden text-white text-2xl sm:text-4xl"
+        >
+          <div class="py-12 animate-marquee whitespace-nowrap">
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+          </div>
+
+          <div class="absolute top-0 py-12 animate-marquee2 whitespace-nowrap">
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+            <span class="mx-4"> ✶ LEKHA.CC ✶ </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
