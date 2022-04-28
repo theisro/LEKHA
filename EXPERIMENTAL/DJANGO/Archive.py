@@ -11,6 +11,16 @@ from django.db import models
            ('draft', 'Draft'),
            ('published', 'Published'),
        )
+         
+         #Archive Types
+           ARCHIVE_TYPE = (
+           ('artist, 'Artist'),
+           ('Institution', 'Institution'),
+            ('Collective', 'Collective')
+       )
+         
+         
+         
        title = models.CharField(max_length=250)
        slug = models.SlugField(max_length=250,
                                unique_for_date='publish')
@@ -24,7 +34,11 @@ from django.db import models
        status = models.CharField(max_length=10,
                                  choices=STATUS_CHOICES,
                                  default='draft')
-       class Meta:
+              ArchiveType = models.CharField(max_length=10,
+                                 choices=ARCHIVE_TYPE,
+                                 default='Artist')
+              
+             class Meta:
            ordering = ('-publish',)
        def __str__(self):
            return self.title
