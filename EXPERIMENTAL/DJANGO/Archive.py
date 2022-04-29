@@ -1,5 +1,7 @@
 # This is a first prototype for an Archive Class.
 # Please add to this. What fields should it have?
+# The ARCHIVE belongs to an ARTIST, an INSTITUTION or a COLLECTIVE.
+
 
 
 
