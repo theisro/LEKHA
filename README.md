@@ -20,7 +20,10 @@ Lekha is a project by the Software Design Research group at The Indian Sonic Res
 
 LEKHA has a unique take on archives. Media files in LEKHA are called “ART”. Art could be documents, sound files, video, texts, STL files or any other file that you might think of. LEKHA does not discriminate. ART is added to the ARCHIVE using a process called ARCHIVING. The act of “ARCHIVING” could include creating, adding, changing or even deleting ARCHIVES. These metaphors with the real world act of archiving also apply to the software design philosophy. For example:
 
+
+```
 Archiving.add(ARCHIVE_NAME, ART.filename)
+```
 
 is a human readable object and a method that could be used to add to an archive.
 
