@@ -5,5 +5,8 @@
 
 #  ******** FEATURES ***********
 # “An authentication mechanism for verifying the user's identity”
+# “All users are identified by a unique number called the User ID, or UID.”
+
+class User
 
 
