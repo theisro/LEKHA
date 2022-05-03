@@ -10,17 +10,13 @@
 # Date & Time Modified
 # Last Action(to undo - actions stored in an array so we can undo or redo actions(?)
 # number of Total items(ART)
+# A list of names of total items
 # number of Total Folders(COLLECTIONS or whatever we chose to name FOLDERS)
+# A list of names of Total Folders
 # number of owners
 # Names and list of co-owners
 # Status of Archive(PRIVATE or PUBLIC)
 # Type of encryption applied.
-
-
-
-
-
-
 
 from django.db import models
    from django.utils import timezone
