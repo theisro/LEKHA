@@ -17,6 +17,7 @@
 # Names and list of co-owners
 # Status of Archive(PRIVATE or PUBLIC)
 # Type of encryption applied.
+# List of HASH, KEYS associated with the archive encryption.
 
 from django.db import models
    from django.utils import timezone
