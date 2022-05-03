@@ -2,6 +2,23 @@
 # Please add to this. What fields should it have?
 # The ARCHIVE belongs to an ARTIST, an INSTITUTION or a COLLECTIVE.
 
+# Possible fields for ARCHIVES could be:
+# NAME
+# OWNER
+# Type of ARCHIVE = Artist, collective or Institution
+# Date & Time Created
+# Date & Time Modified
+# Last Action(to undo - actions stored in an array so we can undo or redo actions(?)
+# number of Total items(ART)
+# number of Total Folders(COLLECTIONS or whatever we chose to name FOLDERS)
+# number of owners
+# Names and list of co-owners
+# Status of Archive(PRIVATE or PUBLIC)
+# Type of encryption applied.
+
+
+
+
 
 
 
