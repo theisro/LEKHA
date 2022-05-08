@@ -12,27 +12,21 @@ classDiagram
     Archive: +create()
     Archive: +add()
     Archive: +ispublic()
+     Archive: +create()
+     Archive: +add()
+     Archive: +delete()
+     Archive: +update()
     class Artist{
       +String ArtistName
-      +create()
-      +add()
-      +delete()
-      +update()
+     
     }
     class Collective{
 
         +String ArtistName
-      +create()
-      +add()
-      +delete()
-      +update()
+      
     }
     class Institution{
        +String ArtistName
-     +create()
-      +add()
-      +delete()
-      +update()
-      +makePublic()
+     
     }
             
