@@ -28,3 +28,10 @@ Archiving.add(ARCHIVE_NAME, ART.filename)
 is a human readable object and a method that could be used to add to an archive.
 
 There are 2 entities in LEKHA - Objects and Processes. Objects include Users, Archives, Artists, Institutions. Processes include that of Archiving - adding, deleting,creating, cataloging..etc.
+
+#Here is a class diagram
+
+ ![image](https://user-images.githubusercontent.com/28617707/167278214-16ec383b-3a52-4ec3-b993-73f66b81cafe.png)
+
+
+The platform is an outcome of work done during the pandemic, in response to the difficulty of using existing archival software. Lekha aims to solve this problem by allowing artists to create, organize, and share archives of their works easily.
