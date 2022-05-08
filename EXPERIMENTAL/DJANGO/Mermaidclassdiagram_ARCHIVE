@@ -4,19 +4,35 @@ classDiagram
     Archive <|-- Institution
     Archive : +int ArchiveNumber
     Archive : +String ArchiveName
+    Archive : +String OwnerName
+    Archive : +int dateFormat Datecreated
+    Archive : +int dateFormat Datelastupdated
+
     Archive : +int TotalnumberofItems
     Archive: +create()
     Archive: +add()
+    Archive: +ispublic()
     class Artist{
       +String ArtistName
-      +swim()
-      +quack()
+      +create()
+      +add()
+      +delete()
+      +update()
     }
     class Collective{
-      -int sizeInFeet
-      -canEat()
+
+        +String ArtistName
+      +create()
+      +add()
+      +delete()
+      +update()
     }
     class Institution{
-      +bool is_wild
-      +run()
+       +String ArtistName
+     +create()
+      +add()
+      +delete()
+      +update()
+      +makePublic()
     }
+            
