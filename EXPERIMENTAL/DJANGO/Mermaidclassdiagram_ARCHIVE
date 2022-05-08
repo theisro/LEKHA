@@ -1,0 +1,22 @@
+classDiagram
+    Archive <|-- Artist
+    Archive <|-- Collective
+    Archive <|-- Institution
+    Archive : +int ArchiveNumber
+    Archive : +String ArchiveName
+    Archive : +int TotalnumberofItems
+    Archive: +create()
+    Archive: +add()
+    class Artist{
+      +String ArtistName
+      +swim()
+      +quack()
+    }
+    class Collective{
+      -int sizeInFeet
+      -canEat()
+    }
+    class Institution{
+      +bool is_wild
+      +run()
+    }
