@@ -18,15 +18,18 @@ classDiagram
      Archive: +update()
     class Artist{
       +String ArtistName
+      +int ArtistUID
      
     }
     class Collective{
 
         +String ArtistName
+        +int ArtistUID
       
     }
     class Institution{
        +String ArtistName
+       +int ArtistUID
      
     }
             
