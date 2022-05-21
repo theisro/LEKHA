@@ -14,4 +14,10 @@ The OMEKA code below is where METADATA for OMEKA is defined
 
 https://github.com/omeka/Omeka/blob/4eb39e0a6588fdcc0d42aefd5960c97e6543e7c1/application/libraries/globals.php#L2045
 
+In OMEKA, DUBLIN CORE is defined here:
+
+https://github.com/omeka/Omeka/blob/ccfff99b68cfb22dfba060b1cb88eca0e148015f/application/languages/Omeka.base.pot
+
+
+
 
