@@ -10,3 +10,8 @@ The Many to Many field seems to be important
 https://docs.djangoproject.com/en/4.0/topics/db/examples/many_to_many/
 
 
+The OMEKA code below is where METADATA for OMEKA is defined
+
+https://github.com/omeka/Omeka/blob/4eb39e0a6588fdcc0d42aefd5960c97e6543e7c1/application/libraries/globals.php#L2045
+
+
