@@ -19,5 +19,11 @@ In OMEKA, DUBLIN CORE is defined here:
 https://github.com/omeka/Omeka/blob/ccfff99b68cfb22dfba060b1cb88eca0e148015f/application/languages/Omeka.base.pot
 
 
+A DJANGO plugin app that applies DUBLIN CORE Metadata to any DJANGO model
+
+https://github.com/mredar/django-dublincore
+
+
+
 
 
