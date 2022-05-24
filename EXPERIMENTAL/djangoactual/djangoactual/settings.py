@@ -54,7 +54,7 @@ ROOT_URLCONF = 'djangoactual.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'landingpage/templates/landingpage'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
