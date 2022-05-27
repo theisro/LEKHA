@@ -25,5 +25,7 @@ https://github.com/mredar/django-dublincore
 
 
 
+#### MEDIA BROWSER IN DJANGO
 
+https://github.com/shelldweller/mediabrowser
 
