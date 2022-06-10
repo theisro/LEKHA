@@ -2,4 +2,4 @@
 
 
 
-The Lekha Experimental build uses Python, Django, and HTML/CSS.
+The Lekha Experimental build uses Python, Django, and HTML/TailwindCSS.
