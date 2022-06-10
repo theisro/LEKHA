@@ -1,3 +1,6 @@
+**Version tech stack:**
+Django + TailwindCSS (via CDN) – we will soon update the repository to use TailwindCSS via CLI to support Tailwind functionality on all major web browsers.
+
 **Instructions to run: (as of 2 June 2022)**
 1. Install Django (_python -m pip install Django_)
 2. cd into [the first] _djangoactual_ within _EXPERIMENTAL_
