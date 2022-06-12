@@ -31,7 +31,7 @@ mypy-extensions==0.4.3
 numpy==1.21.2
 opencv-contrib-python==4.5.3.56
 opencv-python==4.5.3.56
-packaging @ file:///private/tmp/sip--packaging-20220204-89536-13h2r5v/packaging-21.3
+# packaging @ file:///private/tmp/sip--packaging-20220204-89536-13h2r5v/packaging-21.3
 pandas==1.3.3
 pathspec==0.9.0
 Pillow==8.4.0
