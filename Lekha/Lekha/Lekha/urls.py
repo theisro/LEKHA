@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('onboarding/', account_views.onboarding, name='onboarding'),
-    path('accounts/', include('accounts.urls'))
-
+    path('accounts/', include('accounts.urls')),
+    path('signup', account_views.signup, name='signup'),
 ]
