@@ -1,7 +1,10 @@
 from django.db import models
 
-# Create your models here.
+# Create your models here. 
 class Artist(models.Model):
+    '''
+    The artist class is a subtype of archive. It contains all of the information pertaining to an artist, such as their name, bio and social media links.
+    '''
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     aword1 = models.CharField(max_length=200)

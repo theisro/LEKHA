@@ -8,9 +8,12 @@ from .models import Artist
 
 def onboarding(response):
     if response.method == "POST":
+        # if the form has been submitted
+        # Serve the form -> response.POST
         form = OnboardingForm(response.POST)
 
         if form.is_valid():
+            # if the all the fields on the form pass validation
             # retrieve information from the form
             first_name = form.cleaned_data.get("first_name")
             last_name = form.cleaned_data.get("last_name")
@@ -38,10 +41,12 @@ def onboarding(response):
             # save the artist to the database
             artist.save()
 
-        # Redirect to dashboard page
+        # Redirect to index page
         return HttpResponseRedirect("")
 
     else:
+        # If the form is not submitted (page is loaded for example)
+        # -> Serve the empty form
         form = OnboardingForm()
 
     return render(response, "accounts/onboarding.html", {"form": form})
@@ -49,10 +54,15 @@ def onboarding(response):
 
 def register(request):
     if request.method == "POST":
+        # if the form is submitted
         form = UserRegisterForm(request.POST)
+
         if form.is_valid():
+            # if the inputs are all valid, save the form and create a new user
             form.save()
+            # then redirect home
             return redirect('home')
     else:
         form = UserRegisterForm()
+        
     return render(request, "accounts/register.html", {"form": form})
