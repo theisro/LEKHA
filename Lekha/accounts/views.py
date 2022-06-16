@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from .forms import OnboardingForm, SignupForm
+from django.http import HttpResponseRedirect
+from .forms import OnboardingForm, UserRegisterForm
 from .models import Artist
-
-from django.contrib.auth import login, authenticate
-
-#delete when done
-from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -16,7 +11,7 @@ def onboarding(response):
         form = OnboardingForm(response.POST)
 
         if form.is_valid():
-            ## retrieve information from the form
+            # retrieve information from the form
             first_name = form.cleaned_data.get("first_name")
             last_name = form.cleaned_data.get("last_name")
             aword1 = form.cleaned_data.get("aword1")
@@ -28,43 +23,36 @@ def onboarding(response):
             twitter_handle = form.cleaned_data.get("twitter_handle")
             private = form.cleaned_data.get("private")
 
-            ## create a new artist with the parameters retrieved from the form
-            artist = Artist(first_name=first_name, 
-                            last_name=last_name, 
-                            aword1=aword1, 
-                            aword2=aword2, 
-                            aword3=aword3, 
-                            bio=bio, 
-                            insta_handle=insta_handle, 
-                            fb_handle=fb_handle, 
-                            twitter_handle=twitter_handle, 
+            # create a new artist with the parameters retrieved from the form
+            artist = Artist(first_name=first_name,
+                            last_name=last_name,
+                            aword1=aword1,
+                            aword2=aword2,
+                            aword3=aword3,
+                            bio=bio,
+                            insta_handle=insta_handle,
+                            fb_handle=fb_handle,
+                            twitter_handle=twitter_handle,
                             private=private)
 
-            ## save the artist to the database
+            # save the artist to the database
             artist.save()
-        
-        ## Redirect to dashboard page
+
+        # Redirect to dashboard page
         return HttpResponseRedirect("")
 
     else:
         form = OnboardingForm()
 
-    return render(response, "accounts/onboarding.html", {"form":form})
-            
+    return render(response, "accounts/onboarding.html", {"form": form})
 
-def signup(response):
-    if response.method == "POST":
-        # form = SignupForm(response.POST)
-        form = UserCreationForm(response.POST)
 
+def register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-        else:
-            return redirect("/onboarding")
-
-        # return redirect("/onboarding")
+            return redirect('home')
     else:
-        # form = SignupForm()
-        form = UserCreationForm()
-    
-    return render(response, "accounts/signup.html", {"form":form})
+        form = UserRegisterForm()
+    return render(request, "accounts/register.html", {"form": form})

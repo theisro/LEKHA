@@ -1,8 +1,7 @@
 from django import forms
-
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
 
 class OnboardingForm(forms.Form):
     first_name = forms.CharField(label="First name", max_length=200)
@@ -17,10 +16,9 @@ class OnboardingForm(forms.Form):
     private = forms.BooleanField(label="private")
 
 
-class SignupForm(UserCreationForm):
+class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ["email", "username", "password1", "password2"]
-
+        fields = ['username', 'email', 'password1', 'password2']

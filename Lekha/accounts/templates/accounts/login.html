@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Log in</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <fieldset>
+        <legend class="border-b mb-4 text-white">Log In Now</legend>
+        {{ form }}
+      </fieldset>
+      <div id="signup-button">
+        <button>Sign In</button>
+      </div>
+      <div>
+        <p>Don't have an account yet? <a href="">Sign Up</a></p>
+      </div>
+    </form>
+  </body>
+</html>
