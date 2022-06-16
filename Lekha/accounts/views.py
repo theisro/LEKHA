@@ -38,8 +38,9 @@ def onboarding(response):
                             twitter_handle=twitter_handle,
                             private=private)
 
-            # save the artist to the database
-            artist.save()
+            # create a new artist with parameters from form, assign it to the current user
+            reponse.user.artist.add(artist)
+            # artist.save()
 
         # Redirect to index page
         return HttpResponseRedirect("")
@@ -61,8 +62,8 @@ def register(request):
             # if the inputs are all valid, save the form and create a new user
             form.save()
             # then redirect home
-            return redirect('home')
+            return redirect('index')
     else:
         form = UserRegisterForm()
-        
+
     return render(request, "accounts/register.html", {"form": form})
