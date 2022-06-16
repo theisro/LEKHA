@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('main.urls')),
     path('onboarding/', account_views.onboarding, name='onboarding'),
     path('accounts/', include('accounts.urls')),
-    path('signup', account_views.signup, name='signup'),
+    path('signup/', account_views.signup, name='signup'),
 ]
