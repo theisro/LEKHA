@@ -18,7 +18,7 @@ class OnboardingForm(forms.Form):
 
 
 class SignupForm(UserCreationForm):
-    email = forms.EmailField()
+    email = forms.EmailField(unique=True)
 
     class Meta:
         model = User
