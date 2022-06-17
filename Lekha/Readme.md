@@ -1,4 +1,3 @@
-### The file structure of this LEKHA project directory
 
 
 # Lekha project file struture
