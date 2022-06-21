@@ -1,3 +1,5 @@
+
+
 # Lekha project file struture
 
 The Lekha file is the main file for the django implementation of Lekha. It's contents include the various apps and files that pertain to Lekha's functioning. For the uninitiated to Django, well go over the file structure here and explain a few django concepts.
