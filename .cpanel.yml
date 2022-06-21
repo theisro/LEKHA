@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/lekhac40/public_html/Lekha_experimental
+    - /bin/cp -R * $DEPLOYPATH
