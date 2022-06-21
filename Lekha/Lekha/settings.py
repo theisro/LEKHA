@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x3-q@&rk)blvmnxpo&jtbfj_7s%hz(qqxzlrb)t1(ls5*rgx3m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['experimental.lekha.cc']
 
 
 # Application definition
