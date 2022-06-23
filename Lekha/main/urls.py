@@ -1,6 +1,7 @@
 from django.urls import path
-
 from .import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -10,3 +11,7 @@ urlpatterns = [
     path('partners/', views.partners, name='partners'),
     path('report/', views.report, name='report'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
