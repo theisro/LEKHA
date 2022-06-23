@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-x3-q@&rk)blvmnxpo&jtbfj_7s%hz(qqxzlrb)t1(ls5*rgx3m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['experimental.lekha.cc','127.0.0.1']
+ALLOWED_HOSTS = ['experimental.lekha.cc', '127.0.0.1']
 
 
 # Application definition
@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 STATICFILES_DIRS = [STATIC_DIR]
 
