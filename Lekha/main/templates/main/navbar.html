@@ -40,7 +40,7 @@
     </script>
   </head>
   <body>
-    <div class="h-screen w-screen overflow-auto">
+    <div class="w-screen min-h-full flex flex-col">
       <header
         class="py-2 px-8 border-b bg-white flex flex-wrap items-center fixed z-40 top-0 w-full"
       >
@@ -81,7 +81,9 @@
                 >
               </li>
               <li class="text-sm">
-                <a class="py-2 px-0 sm:px-4 block hover:text-lblue" href="/login"
+                <a
+                  class="py-2 px-0 sm:px-4 block hover:text-lblue"
+                  href="/login"
                   >Log In</a
                 >
               </li>
@@ -103,6 +105,60 @@
         </div>
       </header>
       {% block content %} {% endblock %}
+      <!-- Footer -->
+      <div class="w-full bg-black p-8 text-white mt-auto">
+        <div class="w-1/2 flex flex-row justify-start">
+          <div class="w-1/2 flex flex-col space-y-2">
+            <div class="text-sm font-bold">LEKHA</div>
+            <a href="/about/" class="text-sm font-light hover:underline"
+              >About Us</a
+            >
+            <a
+              href="https://wiki.lekha.cc/doku.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm font-light hover:underline"
+              >Wiki</a
+            >
+            <a href="/partners/" class="text-sm font-light hover:underline"
+              >Partners</a
+            >
+            <a href="/features/" class="text-sm font-light hover:underline"
+              >Features</a
+            >
+          </div>
+          <div class="w-1/2 flex flex-col space-y-2">
+            <div class="text-sm font-bold">Support</div>
+            <a href="/report/" class="text-sm font-light hover:underline"
+              >Report a Bug</a
+            >
+            <a href="/contact/" class="text-sm font-light hover:underline"
+              >Contact Us</a
+            >
+          </div>
+        </div>
+        <div class="pt-8">
+          <a
+            href="https://www.instagram.com/lekha.cc/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              style="fill: #fff"
+            >
+              <path
+                d="M 8 3 C 5.243 3 3 5.243 3 8 L 3 16 C 3 18.757 5.243 21 8 21 L 16 21 C 18.757 21 21 18.757 21 16 L 21 8 C 21 5.243 18.757 3 16 3 L 8 3 z M 8 5 L 16 5 C 17.654 5 19 6.346 19 8 L 19 16 C 19 17.654 17.654 19 16 19 L 8 19 C 6.346 19 5 17.654 5 16 L 5 8 C 5 6.346 6.346 5 8 5 z M 17 6 A 1 1 0 0 0 16 7 A 1 1 0 0 0 17 8 A 1 1 0 0 0 18 7 A 1 1 0 0 0 17 6 z M 12 7 C 9.243 7 7 9.243 7 12 C 7 14.757 9.243 17 12 17 C 14.757 17 17 14.757 17 12 C 17 9.243 14.757 7 12 7 z M 12 9 C 13.654 9 15 10.346 15 12 C 15 13.654 13.654 15 12 15 C 10.346 15 9 13.654 9 12 C 9 10.346 10.346 9 12 9 z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </body>
 </html>
