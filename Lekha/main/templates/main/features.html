@@ -1,8 +1,261 @@
 <html lang="en">
   <head>
-    <title>LEKHA | Features</title>
+    <title>LEKHA Features | What can LEKHA help you do?</title>
   </head>
+  <style>
+    .html {
+      scroll-behavior: smooth;
+    }
+
+    .accordion {
+      background-color: lbg1;
+      border-bottom: 1px solid #c1cfca;
+      color: #000;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      text-align: left;
+      outline: none;
+      transition: 0.4s;
+    }
+
+    .accordion:after {
+      content: "\002B";
+      color: #0000ff;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .active:after {
+      content: "\2212";
+    }
+
+    .panel {
+      color: #5e5e5e;
+      padding: 10px 18px 0px 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+    }
+  </style>
 </html>
-{% extends 'navbar.html' %} {% block content %}
-<div class="px-8 pt-16 text-xl sm:text-4xl">The Features Page</div>
+{% extends 'navbar.html' %} {% block content %} {% load static %}
+<!-- First Section -->
+<div class="flex flex-col-reverse md:flex-row pt-8">
+  <div class="w-full md:w-1/2 flex flex-col space-y-4 md:justify-around p-8">
+    <div class="text-xl sm:text-6xl font-regular">
+      What can LEKHA help you do?
+    </div>
+    <div class="text-md sm:text-lg font-regular">
+      LEKHA lets you securely upload, organise and catalog your files online.
+      Add metadata to your files, exhibit them, share them or keep it private.
+      Lekha lets you build archives effortlessly and quickly.
+    </div>
+    <a
+      type="button"
+      class="w-full inline-flex justify-center px-4 py-4 bg-lblue hover:bg-black text-white font-medium sm:w-auto text-md sm:text-lg"
+      onclick=""
+      href="#featureList"
+    >
+      See Features&nbsp;↓
+    </a>
+  </div>
+  <div class="w-full md:w-1/2">
+    <img
+      class="w-full h-full object-cover"
+      src="{% static 'main/featuresLandingImg.jpg' %}"
+    />
+  </div>
+</div>
+
+<!-- Second Section -->
+<div class="w-full p-8" style="background-color: #ededed" id="featureList">
+  <br /><br />
+  <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0">
+    <div
+      class="w-full md:w-1/2 flex flex-col space-y-4 md:justify-start pr-0 md:pr-8"
+    >
+      <div class="text-xl sm:text-2xl font-regular">Archive any File</div>
+      <div class="text-md sm:text-lg font-regular">
+        We don’t play favourites. Be it image, video, sound, text or even
+        virtual reality, archive any file format. If you chose to exhibit your
+        archive, visitors can view these files on any browser. LEKHA's design
+        turns navigating your archives into a pleasurable experience.
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 bg-white p-8">
+      <img
+        class="w-full h-full object-cover"
+        src="{% static 'main/allFilesAreWelcome.jpg' %}"
+      />
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <div class="w-full flex flex-col-reverse md:flex-row space-y-4 md:space-y-0">
+    <div class="w-full md:w-1/2 bg-white">
+      <img
+        class="w-full h-full object-cover"
+        src="{% static 'main/metadataMadeEasy.jpg' %}"
+      />
+    </div>
+    <div
+      class="w-full md:w-1/2 flex flex-col space-y-4 md:justify-start pl-0 md:pl-8"
+    >
+      <div class="text-xl sm:text-2xl font-regular">Metadata made easy</div>
+      <div class="text-md sm:text-lg font-regular">
+        Files in archives often require metadata. This is often a frustrating
+        and time consuming process. LEKHA lets you add that information quickly
+        and accurately using globally recognized archival metadata standards.
+        Choose from a range of tags, or create your own custom tags and
+        descriptors. Convert from one standard to another. Export your metadata.
+        LEKHA lets search engines find your public archives and lets you find
+        items in your private archives. LEKHA even allows you to create your own
+        standards. LEKHA will soon offer machine learning algorithms to make the
+        task of adding metadata less cumbersome and more accurate.
+      </div>
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0">
+    <div
+      class="w-full md:w-1/2 flex flex-col space-y-4 md:justify-start pr-0 md:pr-8"
+    >
+      <div class="text-xl sm:text-2xl font-regular">Exhibit your work</div>
+      <div class="text-md sm:text-lg font-regular">
+        Whether you want to make a public archive to share your work, or a
+        private archive to manage and your own files, LEKHA makes it easy to
+        have all your work online in one place. Every archive can have a private
+        and public component to it. If you chose to make your archive public,
+        LEKHA's design will help you let visitors to your archive have a
+        flawless experience navigating through your items. We believe that
+        searching and navigating archives should be a fun, educational and
+        pleasurable experience. LEKHA works with eminent and renowned curators
+        to organise exhibitions of public archives.
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 bg-white">
+      <img
+        class="w-full h-full object-cover"
+        src="{% static 'main/exhibitYourWork.jpeg' %}"
+      />
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <div class="w-full flex flex-col-reverse md:flex-row space-y-4 md:space-y-0">
+    <div class="w-full md:w-1/2 bg-white">
+      <img
+        class="w-full h-full object-cover"
+        src="{% static 'main/secureStorage.jpg' %}"
+      />
+    </div>
+    <div
+      class="w-full md:w-1/2 flex flex-col space-y-4 md:justify-start pl-0 md:pl-8"
+    >
+      <div class="text-xl sm:text-2xl font-regular">Secure archives</div>
+      <div class="text-md sm:text-lg font-regular">
+        Worried about the safety of your files and your archives? LEKHA has you
+        covered. We offer military-grade AES-256 standard encryption, so that
+        you can securely store and share your files on the web.
+      </div>
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0">
+    <div
+      class="w-full md:w-1/2 flex flex-col space-y-4 md:justify-start pr-0 md:pr-8"
+    >
+      <div class="text-xl sm:text-2xl font-regular">Copyright or Copyleft?</div>
+      <div class="text-md sm:text-lg font-regular">
+        Chose between a range of creative commons licenses or open source
+        licenses for your items or choose to copyright them. The choice is upto
+        you.
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 bg-white">
+      <img
+        class="w-full h-full object-cover"
+        src="{% static 'main/copyrightCopyleft.jpeg' %}"
+      />
+    </div>
+  </div>
+  <br /><br /><br /><br />
+  <div class="w-full p-8 md:px-24">
+    <div class="text-center text-xl sm:text-4xl pb-8">
+      Frequently Asked Questions
+    </div>
+    <button class="accordion text-md">
+      Why should I use LEKHA to archive my work?
+    </button>
+    <div class="panel text-md">
+      <p>
+        LEKHA makes archiving super easy. Add metadata to your files from a
+        variety of standards and control the extent to which others can access
+        your archives. If you chose to make your archives public then you can be
+        assured that the public can access and navigate your archives
+        effortlessly.
+      </p>
+    </div>
+
+    <button class="accordion text-md">
+      What file sizes and file formats are supported?
+    </button>
+    <div class="panel text-md">
+      <p>
+        LEKHA is designed to accept documents (pdf), images (png, jpeg, webp),
+        video (mp4, Webm), and audio (mp3, ogg). If you have formats that you
+        need to archive, please
+        <a class="underline" href="/contact/">get in touch</a> and we'll make
+        sure that your unique file formats are supported.
+      </p>
+    </div>
+
+    <button class="accordion text-md">
+      Can I get assistance in building my archive?
+    </button>
+    <div class="panel text-md">
+      <p>
+        Yes you can! We will be happy to assist you with your archive. In
+        addition to guiding you though the online process, we also offer
+        digitisation services. Currently, we are able to support the
+        digitisation of analog formats such as reel-to-reel tapes, audio
+        cassettes, compact discs, VHS tapes, 16mm film and 8mm film.
+        <a class="underline" href="/contact/">Get in touch with us</a> to get
+        help in building your archive on LEKHA.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Final sign up banner -->
+<div class="w-full bg-lbg1 flex flex-col md:flex-row p-8 items-center">
+  <div class="w-full md:w-1/2 text-xl sm:text-4xl">
+    Ready to share your work with the world?
+  </div>
+  <div class="w-full md:w-1/2 py-8 md:pl-8">
+    <button
+      type="button"
+      class="w-full inline-flex justify-center px-4 py-4 bg-lblue hover:bg-black text-white font-medium text-md sm:text-lg"
+      onclick=""
+    >
+      Get started with LEKHA&nbsp;→
+    </button>
+  </div>
+</div>
+
+<script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+</script>
 {% endblock %}
