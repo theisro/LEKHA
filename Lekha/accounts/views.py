@@ -39,7 +39,7 @@ def onboarding(response):
                             private=private)
 
             # create a new artist with parameters from form, assign it to the current user
-            reponse.user.artist.add(artist)
+            response.user.artist.add(artist)
             # artist.save()
 
         # Redirect to index page
