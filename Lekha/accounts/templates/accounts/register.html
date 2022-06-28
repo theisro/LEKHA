@@ -16,6 +16,10 @@
       href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <script>
       tailwind.config = {
         theme: {
@@ -51,13 +55,33 @@
                   </h2>
                 </div>
                 <form action="" method="POST" class="form-group">
-                  {% csrf_token %}
+                  {% csrf_token %} {% comment %}
                   <fieldset>{{ form }}</fieldset>
+                  {% endcomment %}{% for field in form %}
+                  <div class="field">
+                    <label for="{{ field.id_for_label }}" class="label"
+                      >{{ field.html_name }}</label
+                    >
+                    {{ field }} {% if field.help_text %}
+                    <p class="help">{{ field.help_text }}</p>
+                    {% endif %} {% for error in field.errors %}
+                    <p class="help is-danger">{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                  {% endfor %}
                   <div id="signup-button">
-                    <button>Sign Up</button>
+                    <a
+                      class="w-full inline-flex justify-center px-4 py-2 bg-lblue hover:bg-black text-white sm:w-auto"
+                      href="/register"
+                    >
+                      Sign Up
+                    </a>
                   </div>
                   <div>
-                    <p>Already have an account? <a href="">Sign In</a></p>
+                    <p>
+                      Already have an account?
+                      <a href="" class="text-lblue hover:underline">Sign In</a>
+                    </p>
                   </div>
                 </form>
               </div>
