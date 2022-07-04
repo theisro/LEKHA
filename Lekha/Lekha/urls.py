@@ -18,14 +18,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from accounts import views as account_views
-from django.contrib.auth import views as auth_view
+# from django.contrib.auth import views as auth_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('onboarding/', account_views.onboarding, name='onboarding'),
     path('register/', account_views.register, name='register'),
-    path('login/', auth_view.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    # path('login/', auth_view.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('login/', account_views.login, name='login'),
 ]
 
 if settings.DEBUG:

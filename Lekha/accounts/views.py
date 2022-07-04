@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .forms import OnboardingForm, UserRegisterForm
+from .forms import OnboardingForm, UserRegisterForm, LoginForm
 from .models import Artist
 
 # Create your views here.
@@ -67,3 +67,19 @@ def register(request):
         form = UserRegisterForm()
 
     return render(request, "accounts/register.html", {"form": form})
+
+
+def login(request):
+    if request.method == "POST":
+        # if the form is submitted
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            # if the inputs are all valid, log in existing user
+            form.save()
+            # then redirect home
+            return redirect('index')
+    else:
+        form = LoginForm()
+
+    return render(request, "accounts/login.html", {"form": form})
