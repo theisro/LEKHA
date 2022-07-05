@@ -1,16 +1,241 @@
-
+{% comment %} This template contains the code for the onboarding flow. It has
+been divided into 5 sections: 0, 1.1, 1.2, 1.3, and 1.4. Based on which button's
+clicked, the appropriate section gets shown and the other sections remain
+hidden. {% endcomment %}
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LEKHA | Onboarding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              lblue: "#0000ff",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <div
+      class="h-screen w-screen overflow-auto flex flex-col items-center justify-center px-12 sm:px-96 my-auto"
+    >
+      {% comment %} Onboarding Step 0 {% endcomment %}
+      <div class="flex flex-col space-y-8 text-center" id="onboarding0">
+        <p class="text-xl sm:text-3xl font-medium">
+          Are you an artist or do you represent an institution?
+        </p>
+        <div
+          class="w-auto flex flex-col space-y-4 text-center justify-center items-center mx-auto"
+        >
+          <button
+            type="button"
+            class="justify-center text-center px-12 py-2 bg-lblue hover:bg-black text-white w-full font-medium text-xl sm:text-3xl"
+            onclick="ArtistButtonClick()"
+          >
+            Artist
+          </button>
+          <button
+            type="button"
+            disabled
+            class="cursor-not-allowed justify-center text-center px-12 py-2 bg-lblue/50 text-white w-full font-medium text-xl sm:text-3xl"
+            onclick=""
+          >
+            Institution
+          </button>
+        </div>
+      </div>
 
-<h1>Onboarding</h1>
-<form method="post" action="/onboarding/">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit", name="save">Create New</button>
-</form>
-</body>
+      <form method="post" action="/onboarding/">
+        {% csrf_token %} {% comment %} Onboarding Step 1.1 {% endcomment %}
+        <div
+          class="flex flex-col justify-between text-center items-center hidden border border-black rounded-lg p-8 h-[32rem]"
+          id="onboarding1_1"
+        >
+          <div class="flex flex-col space-y-1">
+            <p class="text-xl sm:text-3xl font-medium">Your personal details</p>
+            <p class="text-sm font-light">
+              This information will show up on your public profile
+            </p>
+          </div>
+          <div class="flex flex-col space-y-1">
+            <p class="text-sm font-medium">Profile Picture</p>
+            <div
+              class="h-48 w-48 bg-gray-100 border rounded-lg flex items-center justify-center text-center p-2"
+            >
+              <p class="text-sm font-light text-lblue">
+                Upload an image for your archive
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-4"
+          >
+            <div class="flex flex-col text-left">
+              {{ form.first_name.label_tag }} {{ form.first_name }}
+            </div>
+            <div class="flex flex-col text-left">
+              {{ form.last_name.label_tag }} {{ form.last_name }}
+            </div>
+          </div>
+          <button
+            type="button"
+            class="justify-center text-center px-12 py-2 bg-lblue hover:bg-black text-white w-full font-medium text-md"
+            onclick="OnboardingStep1_1ButtonClick()"
+          >
+            Continue
+          </button>
+        </div>
+
+        {% comment %} Onboarding Step 1.2 {% endcomment %}
+        <div
+          class="flex flex-col justify-between text-center items-center hidden border border-black rounded-lg p-8 h-[32rem]"
+          id="onboarding1_2"
+        >
+          <div class="flex flex-col space-y-1">
+            <p class="text-xl sm:text-3xl font-medium">About Your Practice</p>
+            <p class="text-sm font-light">
+              Tell others a bit about what you do
+            </p>
+          </div>
+          <div class="flex flex-col space-y-1">
+            <p class="text-sm text-left font-medium">
+              Three Words That Describe Your Practice
+            </p>
+            <div
+              class="flex flex-col sm:flex-row sm:space-x-2 space-x-0 sm:space-y-0 space-y-1"
+            >
+              <div class="flex flex-col text-left">{{ form.aword1 }}</div>
+              <div class="flex flex-col text-left">{{ form.aword2 }}</div>
+              <div class="flex flex-col text-left">{{ form.aword3 }}</div>
+            </div>
+          </div>
+          <div class="flex flex-col text-left w-full">
+            {{ form.bio.label_tag }} {{ form.bio }}
+          </div>
+          <button
+            type="button"
+            class="justify-center text-center px-12 py-2 bg-lblue hover:bg-black text-white w-full font-medium text-md"
+            onclick="OnboardingStep1_2ButtonClick()"
+          >
+            Continue
+          </button>
+        </div>
+
+        {% comment %} Onboarding Step 1.3 {% endcomment %}
+        <div
+          class="flex flex-col justify-between text-center items-center hidden border border-black rounded-lg p-8 h-[32rem]"
+          id="onboarding1_3"
+        >
+          <div class="flex flex-col space-y-1">
+            <p class="text-xl sm:text-3xl font-medium">Further information</p>
+            <p class="text-sm font-light">
+              Other information you might want to share with others. You can
+              always change this later.
+            </p>
+          </div>
+          <div class="flex flex-col space-y-1 w-full">
+            <p class="text-sm text-left font-medium">CV (Optional)</p>
+            <div
+              class="h-24 w-full bg-gray-100 border rounded-lg flex items-center justify-center text-center p-2"
+            >
+              <p class="text-sm font-light text-lblue">
+                Click to upload your CV
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col space-y-1">
+            <p class="text-sm text-left font-medium">
+              Social Media Links (optional)
+            </p>
+            <div
+              class="flex flex-col sm:flex-row sm:space-x-2 space-x-0 sm:space-y-0 space-y-1"
+            >
+              <div class="flex flex-col text-left">{{ form.insta_handle }}</div>
+              <div class="flex flex-col text-left">
+                {{ form.twitter_handle }}
+              </div>
+              <div class="flex flex-col text-left">{{ form.fb_handle }}</div>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="justify-center text-center px-12 py-2 bg-lblue hover:bg-black text-white w-full font-medium text-md"
+            onclick="OnboardingStep1_3ButtonClick()"
+          >
+            Continue
+          </button>
+        </div>
+
+        {% comment %} Onboarding Step 1.4 {% endcomment %}
+        <div
+          class="flex flex-col justify-between text-center items-center hidden border border-black rounded-lg p-8 h-[32rem]"
+          id="onboarding1_4"
+        >
+          <div class="flex flex-col space-y-1">
+            <p class="text-xl sm:text-3xl font-medium">Launch Your Archive</p>
+            <p class="text-sm font-light">
+              Please choose whether you want your archive to be public or
+              private. You can always change this later.
+            </p>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row sm:space-x-2 space-x-0 sm:space-y-0 space-y-1"
+          >
+            <button
+              type="submit"
+              name="save"
+              class="justify-center text-center px-12 py-2 border border-lblue bg-white hover:bg-lblue hover:text-white text-lblue w-full font-medium text-md"
+            >
+              Public
+            </button>
+            <button
+              type="submit"
+              name="save"
+              class="justify-center text-center px-12 py-2 border border-lblue bg-white hover:bg-lblue hover:text-white text-lblue w-full font-medium text-md"
+            >
+              Private
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+    function ArtistButtonClick() {
+      document.getElementById("onboarding0").classList.add("hidden");
+      document.getElementById("onboarding1_1").classList.remove("hidden");
+    }
+
+    function OnboardingStep1_1ButtonClick() {
+      document.getElementById("onboarding1_1").classList.add("hidden");
+      document.getElementById("onboarding1_2").classList.remove("hidden");
+    }
+
+    function OnboardingStep1_2ButtonClick() {
+      document.getElementById("onboarding1_2").classList.add("hidden");
+      document.getElementById("onboarding1_3").classList.remove("hidden");
+    }
+
+    function OnboardingStep1_3ButtonClick() {
+      document.getElementById("onboarding1_3").classList.add("hidden");
+      document.getElementById("onboarding1_4").classList.remove("hidden");
+    }
+  </script>
 </html>
-
-
-

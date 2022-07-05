@@ -11,16 +11,25 @@ class OnboardingForm(forms.Form):
     '''
     Form for user onboarding, which collects all the relevant info. 
     '''
-    first_name = forms.CharField(label="First name", max_length=200)
-    last_name = forms.CharField(label="Last name", max_length=200)
-    aword1 = forms.CharField(label="Artist word 1", max_length=200)
-    aword2 = forms.CharField(label="Artist word 2", max_length=200)
-    aword3 = forms.CharField(label="Artist word 3", max_length=200)
-    bio = forms.CharField(label="biography", max_length=200)
-    insta_handle = forms.CharField(label="insta handle", max_length=200)
-    fb_handle = forms.CharField(label="fb handle", max_length=200)
-    twitter_handle = forms.CharField(label="twitter handle", max_length=200)
-    private = forms.BooleanField(label="private")
+    first_name = forms.CharField(label="First name", max_length=200, widget=forms.TextInput(attrs={
+        'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    last_name = forms.CharField(label="Last name", max_length=200, widget=forms.TextInput(attrs={
+        'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    aword1 = forms.CharField(label="Artist word 1", max_length=200, widget=forms.TextInput(attrs={
+                             'placeholder': 'eg: painter', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    aword2 = forms.CharField(label="Artist word 2", max_length=200, widget=forms.TextInput(attrs={
+        'placeholder': 'eg: filmmaker', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    aword3 = forms.CharField(label="Artist word 3", max_length=200, widget=forms.TextInput(attrs={
+        'placeholder': 'eg: designer', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    bio = forms.CharField(label="Biography (optional)", required=False, max_length=1200, widget=forms.Textarea(attrs={
+        'class': 'appearance-none resize-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    insta_handle = forms.CharField(label="Insta handle", required=False, max_length=200, widget=forms.TextInput(attrs={
+        'placeholder': 'Instagram', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    fb_handle = forms.CharField(label="Fb handle", required=False, max_length=200, widget=forms.TextInput(attrs={
+        'placeholder': 'Facebook', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    twitter_handle = forms.CharField(label="Twitter handle", required=False, max_length=200, widget=forms.TextInput(attrs={
+        'placeholder': 'Twitter', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+    # private = forms.BooleanField(label="Private", required=False)
 
 
 class UserRegisterForm(UserCreationForm):
@@ -48,16 +57,16 @@ class UserRegisterForm(UserCreationForm):
         }
 
 
-class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
-    password = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+# class LoginForm(AuthenticationForm):
+#     username = forms.CharField(widget=forms.TextInput(attrs={
+#         'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+#     password = forms.CharField(widget=forms.PasswordInput(
+#         attrs={'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
 
-    class Meta:
-        model = User
-        fields = ['username', 'password']
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'appearance-none my-0 rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}),
-            'password': forms.PasswordInput(attrs={'class': 'appearance-none my-0 rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}),
-        }
+#     class Meta:
+#         model = User
+#         fields = ['username', 'password']
+#         widgets = {
+#             'username': forms.TextInput(attrs={'class': 'appearance-none my-0 rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}),
+#             'password': forms.PasswordInput(attrs={'class': 'appearance-none my-0 rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}),
+#         }

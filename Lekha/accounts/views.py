@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .forms import OnboardingForm, UserRegisterForm, LoginForm
+from .forms import OnboardingForm, UserRegisterForm
 from .models import Artist
 
 # Create your views here.
@@ -24,7 +24,7 @@ def onboarding(response):
             insta_handle = form.cleaned_data.get("insta_handle")
             fb_handle = form.cleaned_data.get("fb_handle")
             twitter_handle = form.cleaned_data.get("twitter_handle")
-            private = form.cleaned_data.get("private")
+            # private = form.cleaned_data.get("private")
 
             # create a new artist with the parameters retrieved from the form
             artist = Artist(first_name=first_name,
@@ -36,7 +36,8 @@ def onboarding(response):
                             insta_handle=insta_handle,
                             fb_handle=fb_handle,
                             twitter_handle=twitter_handle,
-                            private=private)
+                            # private=private
+                            )
 
             # create a new artist with parameters from form, assign it to the current user
             response.user.artist.add(artist)
@@ -69,17 +70,17 @@ def register(request):
     return render(request, "accounts/register.html", {"form": form})
 
 
-def login(request):
-    if request.method == "POST":
-        # if the form is submitted
-        form = LoginForm(request.POST)
+# def login(request):
+#     if request.method == "POST":
+#         # if the form is submitted
+#         form = LoginForm(request.POST)
 
-        if form.is_valid():
-            # if the inputs are all valid, log in existing user
-            form.save()
-            # then redirect home
-            return redirect('index')
-    else:
-        form = LoginForm()
+#         if form.is_valid():
+#             # if the inputs are all valid, log in existing user
+#             form.save()
+#             # then redirect home
+#             return redirect('index')
+#     else:
+#         form = LoginForm()
 
-    return render(request, "accounts/login.html", {"form": form})
+#     return render(request, "accounts/login.html", {"form": form})
