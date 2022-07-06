@@ -1,8 +1,15 @@
-<html lang="en">
-  <head>
-    <title>LEKHA | Contact Us</title>
-  </head>
-</html>
 {% extends 'navbar.html' %} {% block content %}
-<div class="px-8 pt-16 text-xl sm:text-4xl">The Contact Page</div>
+    <div>
+      <h1>Contact</h1>
+      <h4>Contact us directly if you have any questions</h4>
+      <p>
+        Please write your name, email address and a message below if you have any questions.
+        One of our staff members will be happy to contact you directly and answer your questions as soon as possible. 
+      </p>
+      <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+      </form>
+    </div>
 {% endblock %}
