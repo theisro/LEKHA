@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from archival.models import ArtistArchive
+
 # Create your views here.
 
 def index(request):
@@ -26,3 +28,11 @@ def partners(request):
 
 def report(request):
     return render(request, 'report.html')
+
+def archive(request, archive_id):
+    # archive = #retrieve archive with id=archive_id
+    # archive = Archive.objects.get(archive_name=archive_id)
+
+    # return render(request, 'archive.html', {'archive': archive})
+    return HttpResponse("You're looking at %s's archive." % archive_id)
+

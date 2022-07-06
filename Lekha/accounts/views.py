@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .forms import OnboardingForm, UserRegisterForm
-from .models import Artist
+from archival.models import ArtistArchive, InstituionalArchive
 
 # Create your views here.
 
@@ -27,7 +27,7 @@ def onboarding(response):
             private = form.cleaned_data.get("private")
 
             # create a new artist with the parameters retrieved from the form
-            artist = Artist(first_name=first_name,
+            archive = Artist(first_name=first_name,
                             last_name=last_name,
                             aword1=aword1,
                             aword2=aword2,
@@ -40,6 +40,15 @@ def onboarding(response):
 
             # create a new artist with parameters from form, assign it to the current user
             reponse.user.artist.add(artist)
+
+            ## steps:
+            ## create archive
+            ## step 2 create filesystem
+
+            filesystem = Folder.add_root(name="{archive.slug}'s_filesystem")
+            # category1 = Folder.objects.get(pk=filesystem.pk).add_child(name='Paintings')
+            # series1 = Folder.objects.get(pk=category1.pk).add_child(name='Oil Paintings')
+
             # artist.save()
 
         # Redirect to index page
