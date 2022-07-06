@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 # you only need to change this file (and the views file to deal with the POST request) and everything else is automatically updated.
 
 
+
+
 class OnboardingForm(forms.Form):
     '''
     Form for user onboarding, which collects all the relevant info. 
@@ -57,16 +59,13 @@ class UserRegisterForm(UserCreationForm):
         }
 
 
-# class LoginForm(AuthenticationForm):
-#     username = forms.CharField(widget=forms.TextInput(attrs={
-#         'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
-#     password = forms.CharField(widget=forms.PasswordInput(
-#         attrs={'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
+class LoginForm(AuthenticationForm):
 
-#     class Meta:
-#         model = User
-#         fields = ['username', 'password']
-#         widgets = {
-#             'username': forms.TextInput(attrs={'class': 'appearance-none my-0 rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}),
-#             'password': forms.PasswordInput(attrs={'class': 'appearance-none my-0 rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}),
-#         }
+  def __init__(self, *args, **kwargs):
+    super().__init__(*args, **kwargs)
+    self.fields['username'].widget.attrs.update(
+      {'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}
+    )
+    self.fields['password'].widget.attrs.update(
+      {'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}
+    )

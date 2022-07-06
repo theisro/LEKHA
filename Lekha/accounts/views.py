@@ -3,7 +3,13 @@ from django.http import HttpResponseRedirect
 from .forms import OnboardingForm, UserRegisterForm
 from archival.models import ArtistArchive, InstituionalArchive
 
+from django.contrib.auth.views import LoginView    
+
+
 # Create your views here.
+
+# class AdminLogin(LoginView):
+#     template_name = "accounts/login.html"
 
 
 def onboarding(response):

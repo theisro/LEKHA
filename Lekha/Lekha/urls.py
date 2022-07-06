@@ -21,12 +21,16 @@ from accounts import views as account_views
 from main import views as main_views
 from django.contrib.auth import views as auth_view
 
+from accounts.forms import LoginForm
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('onboarding/', account_views.onboarding, name='onboarding'),
     path('register/', account_views.register, name='register'),
-    path('login/', auth_view.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    # path('login/', auth_view.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('login/', auth_view.LoginView.as_view(authentication_form=LoginForm, template_name='accounts/login.html'), name="login"),
+
     path('<str:archive_id>/', main_views.archive, name='archive'),
 ]
 
