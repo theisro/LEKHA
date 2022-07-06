@@ -3,6 +3,60 @@
     <title>LEKHA | About Us</title>
   </head>
 </html>
-{% extends 'navbar.html' %} {% block content %}
-<div class="px-8 pt-16 text-xl sm:text-4xl">The About Page</div>
+{% extends 'navbar.html' %} {% block content %} {% load static %}
+<div class="px-8 pt-16 text-md sm:text-lg font-regular">
+  LEKHA aims to make artist archives easier and more accessible. The platform is
+  an outcome of work done during the pandemic, in response to the difficulty of
+  using existing archival software. LEKHA aims to solve this problem by allowing
+  artists to create, organize and share archives of their works easily.
+  <br /><br />
+  LEKHA is always a work in progress. We are committed to remain open,
+  accessible, and in service of all artists and creatives around the globe.
+  Please do
+  <a
+    href="https://www.theisro.org/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="text-lblue hover:underline"
+    >reach out to us</a
+  >
+  if there is a feature you would like to see implemented on LEKHA. <br /><br />
+  LEKHA is a project by the Software Design Research group at
+  <a
+    href="https://artscienceblr.org/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="text-lblue hover:underline"
+    >The Indian Sonic Research Organisation (TheISRO)</a
+  >. LEKHA is supported by the
+  <a
+    href="https://www.goethe.de/ins/in/en/sta/ban.html"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="text-lblue hover:underline"
+    >Goethe-Institut / Max Mueller Bhavan Bangalore</a
+  >
+  and
+  <a
+    href="https://artscienceblr.org/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="text-lblue hover:underline"
+    >(Art)ScienceBLR</a
+  >.
+</div>
+<div class="w-full p-8 flex flex-col sm:flex-row justify-between">
+  <img
+    class="h-48 w-48 m-auto sm:m-none"
+    src="{% static 'main/logo_theISRO.jpg' %}"
+  />
+  <img
+    class="h-48 w-48 m-auto sm:m-none"
+    src="{% static 'main/logo_goethe.jpg' %}"
+  />
+  <img
+    class="h-48 w-48 m-auto sm:m-none"
+    src="{% static 'main/logo_artScienceBlr.jpg' %}"
+  />
+</div>
 {% endblock %}

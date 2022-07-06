@@ -24,7 +24,7 @@ def onboarding(response):
             insta_handle = form.cleaned_data.get("insta_handle")
             fb_handle = form.cleaned_data.get("fb_handle")
             twitter_handle = form.cleaned_data.get("twitter_handle")
-            private = form.cleaned_data.get("private")
+            # private = form.cleaned_data.get("private")
 
             # create a new artist with the parameters retrieved from the form
             archive = Artist(first_name=first_name,
@@ -36,7 +36,8 @@ def onboarding(response):
                             insta_handle=insta_handle,
                             fb_handle=fb_handle,
                             twitter_handle=twitter_handle,
-                            private=private)
+                            # private=private
+                            )
 
             # create a new artist with parameters from form, assign it to the current user
             reponse.user.artist.add(artist)
@@ -48,6 +49,9 @@ def onboarding(response):
             filesystem = Folder.add_root(name="{archive.slug}'s_filesystem")
             # category1 = Folder.objects.get(pk=filesystem.pk).add_child(name='Paintings')
             # series1 = Folder.objects.get(pk=category1.pk).add_child(name='Oil Paintings')
+
+            # step 3 -> link filesystem to archive somehow
+            #filesystem.archive = archive?
 
             # artist.save()
 
@@ -76,3 +80,19 @@ def register(request):
         form = UserRegisterForm()
 
     return render(request, "accounts/register.html", {"form": form})
+
+
+# def login(request):
+#     if request.method == "POST":
+#         # if the form is submitted
+#         form = LoginForm(request.POST)
+
+#         if form.is_valid():
+#             # if the inputs are all valid, log in existing user
+#             form.save()
+#             # then redirect home
+#             return redirect('index')
+#     else:
+#         form = LoginForm()
+
+#     return render(request, "accounts/login.html", {"form": form})

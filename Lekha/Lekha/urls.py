@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from accounts import views as account_views
 from main import views as main_views
 from django.contrib.auth import views as auth_view
@@ -25,5 +27,13 @@ urlpatterns = [
     path('onboarding/', account_views.onboarding, name='onboarding'),
     path('register/', account_views.register, name='register'),
     path('login/', auth_view.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+<<<<<<< HEAD
     path('<str:archive_id>/', main_views.archive, name='archive'),
+=======
+    # path('login/', account_views.login, name='login'),
+>>>>>>> c362879e7bc999fddfd73067a65b604dc18004d0
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)

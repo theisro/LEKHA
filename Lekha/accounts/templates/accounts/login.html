@@ -1,19 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LEKHA | Sign In</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              lblue: "#0000ff",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
   <body>
-    <h1>Log in</h1>
-    <form action="" method="POST">
-      {% csrf_token %}
-      <fieldset>
-        <legend class="border-b mb-4 text-white">Log In Now</legend>
-        {{ form }}
-      </fieldset>
-      <div id="signup-button">
-        <button>Sign In</button>
+    <div class="h-screen w-screen overflow-auto">
+      <div class="flex flex-col sm:flex-row">
+        <div class="h-screen w-full sm:w-1/2 hidden sm:block">
+          <img
+            class="w-full h-full object-cover"
+            src="https://www.jquery-az.com/html/images/banana.jpg"
+          />
+        </div>
+        <div class="h-screen w-full sm:w-1/2 p-8">
+          <div class="flex flex-col justify between">
+            <div
+              class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+            >
+              <div class="max-w-md w-full space-y-8">
+                <div>
+                  <h2
+                    class="mt-6 text-center text-3xl font-extrabold text-gray-900"
+                  >
+                    Sign into LEKHA
+                  </h2>
+                </div>
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <fieldset>{{ form }}</fieldset>
+                  <div id="signup-button">
+                    <button
+                      class="w-full inline-flex justify-center px-4 py-2 bg-lblue hover:bg-black text-white sm:w-auto"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                  <div>
+                    <p>
+                      Don't have an account yet?
+                      <a href="/register/" class="text-lblue hover:underline"
+                        >Sign Up</a
+                      >
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <p>Don't have an account yet? <a href="">Sign Up</a></p>
-      </div>
-    </form>
+    </div>
   </body>
 </html>
