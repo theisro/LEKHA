@@ -7,5 +7,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('partners/', views.partners, name='partners'),
     path('report/', views.report, name='report'),
-    path('contact/', views.contact, name='contact')
+    path('contact/', views.contact, name='contact'),
+    path('gg/', views.gg, name='gg')  # testing artist page
 ]
