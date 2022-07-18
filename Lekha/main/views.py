@@ -27,12 +27,17 @@ def partners(request):
     return render(request, 'partners.html')
 
 
-def gg(request):
-    return render(request, 'gg.html')
+def artistPage(request):
+    # testing artist page
+    return render(request, 'artistPage.html')
+
+
+def workPage(request):
+    # testing work page
+    return render(request, 'workPage.html')
 
 
 def report(request):
-    # testing artist page
     return render(request, 'report.html')
 
 
