@@ -81,7 +81,7 @@ def register(request):
             # if the inputs are all valid, save the form and create a new user
             form.save()
             # then redirect home
-            return redirect('index')
+            return redirect('onboarding')
     else:
         form = UserRegisterForm()
 
