@@ -101,7 +101,7 @@ class Folder(MP_Node):
 
     '''
     name = models.CharField(max_length=30)
-    archive = models.ForeignKey(Archive, on_delete=models.CASCADE)
+    archive = models.ForeignKey(Archive, on_delete=models.CASCADE, null=True, blank=True, default=None)
 
     # tree specific attributes
     node_order_index = models.IntegerField(
@@ -114,7 +114,7 @@ class Folder(MP_Node):
     node_order_by = ['node_order_index', 'name']
 
     def __str__(self):
-        return 'Category: {}'.format(self.name)
+        return 'Folder: {}'.format(self.name)
 
 
 
@@ -137,30 +137,30 @@ class Work(models.Model):
     name = models.CharField(max_length=50)
     year = models.CharField(max_length=50)
     medium = models.CharField(max_length=50)
-    description = models.CharField(max_length=1200)
+    description = models.CharField(max_length=1200, blank=True, null=True)
 
     # optional metadata
-    authors = models.CharField(max_length=50)
-    classification = models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
-    link = models.URLField(max_length=50)
-    record_creator = models.CharField(max_length=50) # revisit -> 
+    authors = models.CharField(max_length=50, blank=True, null=True)
+    classification = models.CharField(max_length=50, blank=True, null=True)
+    location = models.CharField(max_length=50, blank=True, null=True)
+    link = models.URLField(max_length=50, blank=True, null=True)
+    record_creator = models.CharField(max_length=50, blank=True, null=True) # revisit -> 
 
     # custom descriptors
-    cd1_name = models.CharField(max_length=50)
-    cd1_value = models.CharField(max_length=50)
-    cd2_name = models.CharField(max_length=50)
-    cd2_value = models.CharField(max_length=50)
-    cd3_name = models.CharField(max_length=50)
-    cd3_value = models.CharField(max_length=50)
-    cd4_name = models.CharField(max_length=50)
-    cd4_value = models.CharField(max_length=50)
-    cd5_name = models.CharField(max_length=50)
-    cd5_value = models.CharField(max_length=50)
-    cd6_name = models.CharField(max_length=50)
-    cd6_value = models.CharField(max_length=50)
-    cd7_name = models.CharField(max_length=50)
-    cd7_value = models.CharField(max_length=50)
+    cd1_name = models.CharField(max_length=50, blank=True, null=True)
+    cd1_value = models.CharField(max_length=50, blank=True, null=True)
+    cd2_name = models.CharField(max_length=50, blank=True, null=True)
+    cd2_value = models.CharField(max_length=50, blank=True, null=True)
+    cd3_name = models.CharField(max_length=50, blank=True, null=True)
+    cd3_value = models.CharField(max_length=50, blank=True, null=True)
+    cd4_name = models.CharField(max_length=50, blank=True, null=True)
+    cd4_value = models.CharField(max_length=50, blank=True, null=True)
+    cd5_name = models.CharField(max_length=50, blank=True, null=True)
+    cd5_value = models.CharField(max_length=50, blank=True, null=True)
+    cd6_name = models.CharField(max_length=50, blank=True, null=True)
+    cd6_value = models.CharField(max_length=50, blank=True, null=True)
+    cd7_name = models.CharField(max_length=50, blank=True, null=True)
+    cd7_value = models.CharField(max_length=50, blank=True, null=True)
 
 
     # Standardized Metadata
@@ -180,7 +180,7 @@ class Work(models.Model):
             # self.slug = **archival id of work (automatically determined)** 
         self.modified = timezone.now() # set the modified field to the current date and time. This is reassigned everytime the model is updated.
 
-        return super(Archive, self).save(*args, **kwargs)
+        return super(Work, self).save(*args, **kwargs)
 
 
 
@@ -209,4 +209,4 @@ class MediaFile(models.Model):
             # self.slug = **archival id of work (automatically determined)** 
         self.modified = timezone.now() # set the modified field to the current date and time. This is reassigned everytime the model is updated.
 
-        return super(Archive, self).save(*args, **kwargs)
+        return super(MediaFile, self).save(*args, **kwargs)
