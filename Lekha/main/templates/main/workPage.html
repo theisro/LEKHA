@@ -1,0 +1,112 @@
+<html lang="en"></html>
+{% extends 'navbar.html' %} {% block content %} {% load static %} {% comment %}
+Breadcrumbs {% endcomment %}
+<div
+  class="flex flex-row text-gray-600 px-8 pb-4 border-b border-black pt-16 overflow-auto"
+>
+  <div class="text-sm font-regular whitespace-nowrap">ISHAN's ARCHIVE</div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular">></div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular whitespace-nowrap">PERSONAL PRACTICE</div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular">></div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular whitespace-nowrap">
+    I AM SITTING IN A ROOM (IN INDIRANAGAR)
+  </div>
+</div>
+
+{% comment %} 2-col layout {% endcomment %}
+<div class="flex flex-col-reverse sm:flex-row">
+  {% comment %} Work description {% endcomment %}
+  <div class="w-full h-full sm:w-1/2 p-8 flex flex-col space-y-4">
+    <div class="flex flex-col space-y-4 w-full">
+      <div class="text-xl sm:text-4xl font-regular">
+        I am Sitting in a Room (in Indiranagar)
+      </div>
+      <div class="text-md sm:text-lg font-light text-justify">
+        Alvin Lucier’s famous 1969 work, I Am Sitting in a Room, sets up an
+        elegant system of resonance and decay: Lucier records himself reading
+        the titular text, which is then played back into the room and
+        re-recorded. With each successive pass, his voice dissolves further into
+        a drone of the room’s resonant frequencies. The piece can be seen to
+        efface subjectivity or convey its situated, relational nature. The work
+        can be considered as an aural palimpsest in which an audio effect
+        produced by a physical space is gradually compounded until the original
+        recorded material is rendered unrecognisable. Despite the gradual
+        foregrounding of the effect of the artist’s environment, the text of the
+        work does not acknowledge its wider context beyond merely “a room”. In
+        attempting to perform and record the work in a wholly different context,
+        such as a room in Indiranagar, the differences between Lucier’s
+        environment and mine become discernible. In I am Sitting in a Room, the
+        only two actors are Lucier’s voice and the room he is in. There is
+        almost no audible interference from outside of that room. In this way,
+        the wider context of his room is erased from the work and the work
+        itself can be read as an acoustic study of interior physical and
+        material space alone. However, in a room such as mine in Indiranagar,
+        exterior actors cannot be kept from interfering with the process. The
+        influx of exterior sounds straining against the threshold of interior
+        space become audible and even emphasised through the act of
+        re-recording. These external actors interfere with the otherwise
+        totalising effect of the room on my voice, leading to a different result
+        from that of Lucier’s. I understand this as the insistence of my context
+        towards being heard (or acknowledged, rather). Through this process, the
+        permeability of urban domestic spaces in Bangalore can be highlighted
+        through listening.
+      </div>
+    </div>
+  </div>
+  {% comment %} File viewer {% endcomment %}
+  <div class="w-full sm:w-1/2 h-full p-8 flex flex-col space-y-2">
+    <div class="w-full aspect-ratio border border-gray-300">
+      <img
+        class="object-cover block m-auto"
+        src="https://www.jquery-az.com/html/images/banana.jpg"
+      />
+    </div>
+    <hr />
+    <div class="flex flex-row space-x-2 overflow-auto">
+      <div class="w-24 h-24">
+        <img
+          class="object-cover block m-auto"
+          src="https://www.jquery-az.com/html/images/banana.jpg"
+        />
+      </div>
+      <div class="w-24 h-24">
+        <img
+          class="object-cover block m-auto"
+          src="https://www.jquery-az.com/html/images/banana.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="m-8 border-black" />
+
+<!-- Meta data descriptors -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 p-8">
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">AUTHORS</div>
+    <div>Ishan Gupta</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">PLACE CREATED</div>
+    <div>Bangalore, India</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">CITATION</div>
+    <div>
+      Ishan Gupta, I am Sitting in a Room (in Indiranagar), 2022,
+      https://lekha.cc/version-live/artist/ishangupta42/work/iamsitting
+    </div>
+  </div>
+</div>
+
+<hr class="border-black" />
+
+<div class="p-8 text-right">
+  <a href="#">&#8592; &nbsp;back to archive</a>
+</div>
+{% endblock %}
