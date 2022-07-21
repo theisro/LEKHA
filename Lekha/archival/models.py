@@ -6,70 +6,131 @@ from django.utils import timezone
 # library for hierarchical filesystems (file browser)
 from treebeard.mp_tree import MP_Node
 
+# middleware for getting the currently logged in user. This is necessary for assigning the 'creator' attribute of several models.
+from crum import get_current_user
+
 
 
 # Create your models here.
 class Archive(models.Model):
     '''
-    Abstract Archive data type. It contains all of the information pertaining to an archive.
+    Contains all the metadata and pertinent info relevant to an archive. 
+    There are a few different archive types, each of which has metadata that is relevant to only those archive types,
+    for example artist archives are an archive of an individual's work, and will therefore have fields such as first name, cv, etc.
+
     '''
     ## core
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    #Archive Types
+    ARCHIVE_TYPE_CHOICES = (
+        ('ARTIST', 'Artist'),
+        ('INSTITUTION', 'Institution'),
+        ('COLLECTIVE', 'Collective')
+    )
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,
+                                   default=None)
     created = models.DateTimeField()
     modified = models.DateTimeField()
-    archive_slug = models.SlugField(max_length=50) # slug
+    archive_slug = models.SlugField(max_length=50, null=True) # slug
+    archive_type = models.CharField(  # new
+        choices=ARCHIVE_TYPE_CHOICES,
+        max_length=20,
+        verbose_name="type of archive",
+        default="ARTIST",
+    )
 
 
     ## common to all archive types
     bio = models.CharField(max_length=600) # description for institutions
-    insta_link = models.URLField()
-    fb_link = models.URLField()
-    twitter_link = models.URLField()
+    insta_link = models.URLField(null=True, blank=True)
+    fb_link = models.URLField(null=True, blank=True)
+    twitter_link = models.URLField(null=True, blank=True)
     private = models.BooleanField()
-    archive_image = models.ImageField()
+    archive_image = models.ImageField(null=True, blank=True)
 
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return self.archive_name
-
-    def get_absolute_url(self): # new
-        return reverse("university_detail", args=[str(self.archive_name)])
-
-    def save(self, *args, **kwargs):
-        ''' On save, update timestamps '''
-        if not self.id:
-            self.created = timezone.now()
-        self.modified = timezone.now()
-        return super(Archive, self).save(*args, **kwargs)
-
-
-
-
-class ArtistArchive(Archive):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    ## specific to artist archives
+    first_name = models.CharField(max_length=50) # note: null=True shouldnt be set for char fields as "" is valid as null
+    last_name = models.CharField(max_length=50) #blank = False prevents people from leaving fields empty in forms
     aword1 = models.CharField(max_length=20)
     aword2 = models.CharField(max_length=20)
     aword3 = models.CharField(max_length=20)
-    cv = models.FileField()
+    cv = models.FileField(null=True)
 
-class InstituionalArchive(Archive):
+    ## specific to institutional archives
     institution_name = models.CharField(max_length=50)
-    institution_website = models.URLField()
+    institution_website = models.URLField(null=True, blank=True)
+
+    ## 
+
+    class Meta:
+        verbose_name = "archive"
+        verbose_name_plural = "archives"
+
+
+    def __str__(self):
+        return 'Archive: {}'.format(self.archive_slug)
+
+    # def get_absolute_url(self): # new
+    #     return reverse("", args=[str(self.archive_name)])
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        user = get_current_user()
+
+        if not self.id: # if the model is being created for the first time:
+            self.creator = user # assign the currently logged in user as the creator
+            self.created = timezone.now() # set the 'created' field to the current date and time
+        self.modified = timezone.now() # set the modified field to the current date and time. This is reassigned everytime the model is updated.
+
+        return super(Archive, self).save(*args, **kwargs)
 
     
+
+    
+class Folder(MP_Node):
+    '''
+    MP_Node uses raw SQL queries so you have to 'reload' a node each time you want to add children or siblings.
+    For example, you cant do
+
+    filesystem = Folder.add_root(name = "Archive0")
+    node = filesystem.add_child(name="Paintings")
+
+    Instead you have to retrieve the node again:
+
+    filesystem = Folder.add_root(name = "Archive0")
+    paintings = Folder.objects.get(filesystem.pk).add_child(name="Paintings")
+
+    '''
+    name = models.CharField(max_length=30)
+    archive = models.ForeignKey(Archive, on_delete=models.CASCADE)
+
+    # tree specific attributes
+    node_order_index = models.IntegerField(
+        blank=True,
+        default=0,
+        editable=False
+    )
+    
+    # !!! this should NOT be changed after the first node is created.
+    node_order_by = ['node_order_index', 'name']
+
+    def __str__(self):
+        return 'Category: {}'.format(self.name)
+
+
+
 class Work(models.Model):
     ## core data
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,
+                                   default=None)
     created = models.DateTimeField()
     modified = models.DateTimeField()
-    work_slug = models.SlugField(max_length=50) # slug
+    work_slug = models.SlugField(max_length=50) # slug -> TBD: find way to assign default value to slug = archival number.
+
+    archive = models.ForeignKey(Archive, on_delete=models.CASCADE)
+
 
     # superfolder -> replaces category, series etc with dynamic hierarchical database
-    # archive = models.ForeignKey(ArtistArchive, on_delete=models.CASCADE) #replace with parent folder
+    folder = models.ForeignKey(Folder, on_delete=models.CASCADE)
     
 
     # basic metadata fields
@@ -109,46 +170,43 @@ class Work(models.Model):
     def __str__(self):
         return 'Work: {}'.format(self.name)
 
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        user = get_current_user()
 
-    
-class Folder(MP_Node):
-    '''
-    MP_Node uses raw SQL queries so you have to 'reload' a node each time you want to add children or siblings.
-    For example, you cant do
+        if not self.id: # if the model is being created for the first time:
+            self.creator = user # assign the currently logged in user as the creator
+            self.created = timezone.now() # set the 'created' field to the current date and time
+            # self.slug = **archival id of work (automatically determined)** 
+        self.modified = timezone.now() # set the modified field to the current date and time. This is reassigned everytime the model is updated.
 
-    filesystem = Folder.add_root(name = "Archive0")
-    node = filesystem.add_child(name="Paintings")
+        return super(Archive, self).save(*args, **kwargs)
 
-    Instead you have to retrieve the node again:
 
-    filesystem = Folder.add_root(name = "Archive0")
-    paintings = Folder.objects.get(filesystem.pk).add_child(name="Paintings")
-
-    '''
-    name = models.CharField(max_length=30)
-
-    # tree specific attributes
-    node_order_index = models.IntegerField(
-        blank=True,
-        default=0,
-        editable=False
-    )
-    
-    # !!! this should NOT be changed after the first node is created.
-    node_order_by = ['node_order_index', 'name']
-
-    def __str__(self):
-        return 'Category: {}'.format(self.name)
 
 class MediaFile(models.Model):
     # core
+    #### Need to decide if media files can exist in folders or only in works ---> did we decide that the archive builder can also hold media files?
+    work = models.ForeignKey(Work, on_delete=models.CASCADE)
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     time_created = models.DateTimeField(auto_now_add=True)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,
+                                   default=None)
 
     # descriptors
     alt_text = models.CharField(max_length=60)
     caption = models.CharField(max_length=60)
     media = models.FileField(upload_to='documents/') # handle filetype in views?
 
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        user = get_current_user()
+
+        if not self.id: # if the model is being created for the first time:
+            self.creator = user # assign the currently logged in user as the creator
+            self.created = timezone.now() # set the 'created' field to the current date and time
+            # self.slug = **archival id of work (automatically determined)** 
+        self.modified = timezone.now() # set the modified field to the current date and time. This is reassigned everytime the model is updated.
+
+        return super(Archive, self).save(*args, **kwargs)

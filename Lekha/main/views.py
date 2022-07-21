@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 
-from archival.models import ArtistArchive
+from archival.models import Archive
 
 # mail sending
 from .forms import ContactForm
@@ -42,11 +42,11 @@ def report(request):
 
 
 def archive(request, archive_id):
-    # archive = #retrieve archive with id=archive_id
-    # archive = Archive.objects.get(archive_name=archive_id)
+    # retrieve archive which has the slug archive_id
+    # archive = Archive.objects.get(archive_slug=archive_id)
 
-    # return render(request, 'archive.html', {'archive': archive})
-    return HttpResponse("You're looking at %s's archive." % archive_id)
+    # render the HTML of the archive display page, and pass in data of the archive we retrieved above. 
+    return render(request, 'artistPage.html')
 
 
 def contact(request):

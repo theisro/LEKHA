@@ -19,17 +19,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from accounts import views as account_views
 from main import views as main_views
+from archival import views as archival_views
 from django.contrib.auth import views as auth_view
 
 from accounts.forms import LoginForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
+    path('', include('main.urls'), name='index'),
     path('onboarding/', account_views.onboarding, name='onboarding'),
     path('register/', account_views.register, name='register'),
     path('login/', auth_view.LoginView.as_view(authentication_form=LoginForm, template_name='accounts/login.html'), name="login"),
     path('<str:archive_id>/', main_views.archive, name='archive'),
+    path('dashboard', archival_views.dashboard, name='dashboard')
 ]
 
 if settings.DEBUG:

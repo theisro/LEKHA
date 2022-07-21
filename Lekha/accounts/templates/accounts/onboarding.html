@@ -76,6 +76,12 @@ hidden. {% endcomment %}
           </div>
           <div class="flex flex-col space-y-1">
             <p class="text-sm font-medium">Profile Picture</p>
+            <p>{{ form.profile_image.label_tag }} {{ form.profile_image.help_text }}</p>
+
+            <p>
+                {{ form.profile_image.errors }}
+                {{ form.profile_image }}
+            </p>
             <div
               class="h-48 w-48 bg-gray-100 border rounded-lg flex items-center justify-center text-center p-2"
             >
@@ -158,6 +164,12 @@ hidden. {% endcomment %}
               <p class="text-sm font-light text-lblue">
                 Click to upload your CV
               </p>
+              <p>{{ form.cv.label_tag }} {{ form.cv.help_text }}</p>
+
+            <p>
+                {{ form.cv.errors }}
+                {{ form.cv }}
+            </p>
             </div>
           </div>
           <div class="flex flex-col space-y-1">

@@ -31,8 +31,8 @@ class OnboardingForm(forms.Form):
         'placeholder': 'Facebook', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
     twitter_handle = forms.CharField(label="Twitter handle", required=False, max_length=200, widget=forms.TextInput(attrs={
         'placeholder': 'Twitter', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
-    profile_image = forms.FileField(label="Archive Image", required=False)
-    cv = forms.FileField(label="Archive Image", required=False)
+    profile_image = forms.FileField(label="Archive Image", required=False, help_text='max 42 megabytes') ## change helptext
+    cv = forms.FileField(label="CV", required=False, help_text='max 42 megabytes')
     # private = forms.BooleanField(label="Private", required=False)
 
 

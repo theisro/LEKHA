@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .forms import OnboardingForm, UserRegisterForm
-from archival.models import ArtistArchive, InstituionalArchive
+from archival.models import Archive, Folder
 
 from django.contrib.auth.views import LoginView    
 
@@ -27,42 +27,45 @@ def onboarding(response):
             aword2 = form.cleaned_data.get("aword2")
             aword3 = form.cleaned_data.get("aword3")
             bio = form.cleaned_data.get("bio")
-            insta_handle = form.cleaned_data.get("insta_handle")
-            fb_handle = form.cleaned_data.get("fb_handle")
-            twitter_handle = form.cleaned_data.get("twitter_handle")
-            # private = form.cleaned_data.get("private")
+            insta_link = form.cleaned_data.get("insta_link")
+            fb_link = form.cleaned_data.get("fb_link")
+            twitter_link = form.cleaned_data.get("twitter_link")
+            archive_image = form.cleaned_data.get("archive_image")
+            cv = form.cleaned_data.get("cv")
 
-            # create a new artist with the parameters retrieved from the form
-            archive = Artist(first_name=first_name,
+
+            ### these variables need to be dynamically assigned and/or properly retrieved from the html. 
+            archive_slug = "asd"
+            private = False
+            archive_type="ARTIST"
+
+            # create a new archive with the parameters retrieved from the form. currently logged in user is automatically linked
+            archive = Archive(first_name=first_name,
                             last_name=last_name,
                             aword1=aword1,
                             aword2=aword2,
                             aword3=aword3,
                             bio=bio,
-                            insta_handle=insta_handle,
-                            fb_handle=fb_handle,
-                            twitter_handle=twitter_handle,
-                            # private=private
+                            insta_link=insta_link,
+                            fb_link=fb_link,
+                            twitter_link=twitter_link,
+                            cv = cv,
+                            archive_image=archive_image,
+                            private=private,
+                            archive_type=archive_type,
+                            archive_slug=archive_slug,
                             )
 
-            # create a new artist with parameters from form, assign it to the current user
-            reponse.user.artist.add(artist)
+            # save the archive to the database (save also assigns timestamps to the archive: created, modified)
+            archive.save() 
 
-            ## steps:
-            ## create archive
-            ## step 2 create filesystem
-
-            filesystem = Folder.add_root(name="{archive.slug}'s_filesystem")
+            ## step 2 create filesystem and link it to the archive
+            filesystem = Folder.add_root(name="{}'s filesystem".format(archive_slug), archive=archive)
             # category1 = Folder.objects.get(pk=filesystem.pk).add_child(name='Paintings')
             # series1 = Folder.objects.get(pk=category1.pk).add_child(name='Oil Paintings')
 
-            # step 3 -> link filesystem to archive somehow
-            #filesystem.archive = archive?
-
-            # artist.save()
-
         # Redirect to index page
-        return HttpResponseRedirect("")
+        return redirect('index')
 
     else:
         # If the form is not submitted (page is loaded for example)
