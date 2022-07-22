@@ -50,13 +50,70 @@
           <a href="/" class="text-lg font-medium">LEKHA</a>
         </div>
 
-        <div class="flex items-center w-auto" id="menu">
+        <a class="text-sm font-medium py-2 px-4 block hover:text-lblue" href="/"
+          >GO TO DASHBOARD</a
+        >
+
+        <label for="menu-toggle" class="cursor-pointer block"
+          ><svg
+            class="fill-current text-gray-900"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+          >
+            <title>menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+          </svg>
+        </label>
+        <input class="hidden" type="checkbox" id="menu-toggle" />
+        <div class="hidden w-full" id="menu">
           <nav>
-            <ul class="flex items-center justify-between text-gray-700">
-              <li class="text-sm">
-                <a class="py-2 px-0 sm:px-4 block hover:text-lblue" href="/"
-                  >{{ user.get_username }}</a
+            <ul class="items-center justify-between text-right text-gray-700">
+              <li
+                class="text-sm flex flex-row items-center justify-end space-x-1"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
                 >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+                <div class="py-2 px-0 block">{{ user.get_username }}</div>
+              </li>
+              <li class="text-sm">
+                <a class="py-2 px-0 block hover:text-lblue" href="/"
+                  >DASHBOARD</a
+                >
+              </li>
+              <li class="text-sm">
+                <a class="py-2 px-0 block hover:text-lblue" href="/"
+                  >YOUR ARCHIVE</a
+                >
+              </li>
+              <li class="text-sm">
+                <a class="py-2 px-0 block hover:text-lblue" href="/"
+                  >ACCOUNT SETTINGS</a
+                >
+              </li>
+              <li class="text-sm">
+                <a class="py-2 px-0 block hover:text-lblue" href="/">CONNECT</a>
+              </li>
+              <li class="text-sm">
+                <a class="py-2 px-0 block hover:text-lblue" href="/about/"
+                  >ABOUT</a
+                >
+              </li>
+              <li class="text-sm">
+                <a class="py-2 px-0 block hover:text-lblue" href="/">LOG OUT</a>
               </li>
             </ul>
           </nav>
@@ -72,7 +129,7 @@
           <a href="/" class="text-lg font-medium">LEKHA</a>
         </div>
 
-        <label for="menu-toggle" class="pointer-cursor sm:hidden block"
+        <label for="menu-toggle" class="cursor-pointer sm:hidden block"
           ><svg
             class="fill-current text-gray-900"
             xmlns="http://www.w3.org/2000/svg"
@@ -88,9 +145,7 @@
 
         <div class="hidden sm:flex sm:items-center sm:w-auto w-full" id="menu">
           <nav>
-            <ul
-              class="sm:flex items-center justify-between text-base text-gray-700"
-            >
+            <ul class="sm:flex items-center justify-between text-gray-700">
               <li class="text-sm">
                 <a
                   class="py-2 px-0 sm:px-4 block hover:text-lblue"
