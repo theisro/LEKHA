@@ -3,12 +3,19 @@
     <title>LEKHA | About Us</title>
   </head>
 </html>
+
 {% extends 'navbar.html' %} {% block content %} {% load static %}
+
 <div class="px-8 pt-16 text-md sm:text-lg font-regular">
-  LEKHA aims to make artist archives easier and more accessible. The platform is
-  an outcome of work done during the pandemic, in response to the difficulty of
-  using existing archival software. LEKHA aims to solve this problem by allowing
-  artists to create, organize and share archives of their works easily.
+  {% if user.is_authenticated %}
+  <p>Welcome '{{ user.get_username }}'</p>
+  {% else %}
+  <p>Go away</p>
+  {% endif %} LEKHA aims to make artist archives easier and more accessible. The
+  platform is an outcome of work done during the pandemic, in response to the
+  difficulty of using existing archival software. LEKHA aims to solve this
+  problem by allowing artists to create, organize and share archives of their
+  works easily.
   <br /><br />
   LEKHA is always a work in progress. We are committed to remain open,
   accessible, and in service of all artists and creatives around the globe.
