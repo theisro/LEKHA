@@ -14,17 +14,6 @@ import secrets #for generating random slugs (for now, remove when redundant)
 
 # Create your views here.
 
-# class AdminLogin(LoginView):
-#     template_name = "accounts/login.html"
-
-def handle_uploaded_archive_file(f):  
-    path = 'files/archive'+f.name
-    with open(path, 'wb+') as destination:  
-        for chunk in f.chunks():
-            destination.write(chunk)
-        
-    return path
-
 def onboarding(response):
     if response.method == "POST":
         # if the form has been submitted
