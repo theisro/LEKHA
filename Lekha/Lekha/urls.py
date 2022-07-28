@@ -30,10 +30,16 @@ urlpatterns = [
     path('onboarding/', account_views.onboarding, name='onboarding'),
     path('register/', account_views.register, name='register'),
     path('login/', auth_view.LoginView.as_view(authentication_form=LoginForm, template_name='accounts/login.html'), name="login"),
-    path('<str:archive_id>/', main_views.archive, name='archive'),
+    path('logout/', account_views.logout_view, name='logout'),
+    path('<str:slug>/', main_views.archive, name='archive'),
     path('dashboard', archival_views.dashboard, name='dashboard')
 ]
 
+# these enable the serving of static and media content to the website
+# during development. This needs to be changed to something more robust during production.
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, 
+                          document_root=settings.MEDIA_ROOT)
+

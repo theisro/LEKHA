@@ -37,6 +37,8 @@ class Archive(models.Model):
         verbose_name="type of archive",
         default="ARTIST",
     )
+    private = models.BooleanField(default=True)
+
 
 
     ## common to all archive types
@@ -44,7 +46,6 @@ class Archive(models.Model):
     insta_link = models.URLField(null=True, blank=True)
     fb_link = models.URLField(null=True, blank=True)
     twitter_link = models.URLField(null=True, blank=True)
-    private = models.BooleanField()
     archive_image = models.ImageField(null=True, blank=True)
 
     ## specific to artist archives

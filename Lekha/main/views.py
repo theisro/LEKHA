@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 
-from archival.models import Archive
+from archival.models import Archive, Folder
 
 # mail sending
 from .forms import ContactForm
@@ -27,9 +27,11 @@ def partners(request):
     return render(request, 'partners.html')
 
 
-def artistPage(request):
-    # testing artist page
-    return render(request, 'artistPage.html')
+def archive(request, slug):
+    # retrieve archive with the corresponding slug requested (lekha.cc/dhruva will request the archive with slug='dhruva')
+    archive = Archive.objects.get(archive_slug=slug)
+    filesystem = Folder.objects.get(archive=archive)
+    return render(request, 'archive.html', {'archive': archive, 'filesystem': filesystem})
 
 
 def workPage(request):
@@ -41,12 +43,6 @@ def report(request):
     return render(request, 'report.html')
 
 
-def archive(request, archive_id):
-    # retrieve archive which has the slug archive_id
-    # archive = Archive.objects.get(archive_slug=archive_id)
-
-    # render the HTML of the archive display page, and pass in data of the archive we retrieved above. 
-    return render(request, 'artistPage.html')
 
 
 def contact(request):

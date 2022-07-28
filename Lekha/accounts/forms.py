@@ -1,17 +1,17 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from archival.models import Archive
 
 # Forms.py in django is used to house forms that are used on the websites. Django automatically generates html code for forms based on a blueprint
 # defined here, and creates an input field for each of the variables defined in the classes here. That way, if you want to change the form on the frontend,
 # you only need to change this file (and the views file to deal with the POST request) and everything else is automatically updated.
-
-
-
-
+        
 class OnboardingForm(forms.Form):
     '''
     Form for user onboarding, which collects all the relevant info. 
+
+    Redundant if we use the ModelForm variant. 
     '''
     first_name = forms.CharField(label="First name", max_length=200, widget=forms.TextInput(attrs={
         'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
@@ -31,7 +31,7 @@ class OnboardingForm(forms.Form):
         'placeholder': 'Facebook', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
     twitter_handle = forms.CharField(label="Twitter handle", required=False, max_length=200, widget=forms.TextInput(attrs={
         'placeholder': 'Twitter', 'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}))
-    profile_image = forms.FileField(label="Archive Image", required=False, help_text='max 42 megabytes') ## change helptext
+    archive_image = forms.ImageField(label="Archive Image", required=False, help_text='max 42 megabytes') ## change helptext
     cv = forms.FileField(label="CV", required=False, help_text='max 42 megabytes')
     # private = forms.BooleanField(label="Private", required=False)
 

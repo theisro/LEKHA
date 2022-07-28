@@ -62,7 +62,7 @@ hidden. {% endcomment %}
         </div>
       </div>
 
-      <form method="post" action="/onboarding/">
+      <form method="post" action="/onboarding/" enctype="multipart/form-data">
         {% csrf_token %} {% comment %} Onboarding Step 1.1 {% endcomment %}
         <div
           class="flex flex-col justify-between text-center items-center hidden border border-black rounded-lg p-8 h-[32rem]"
@@ -76,11 +76,11 @@ hidden. {% endcomment %}
           </div>
           <div class="flex flex-col space-y-1">
             <p class="text-sm font-medium">Profile Picture</p>
-            <p>{{ form.profile_image.label_tag }} {{ form.profile_image.help_text }}</p>
+            <p>{{ form.archive_image.label_tag }} {{ form.archive_image.help_text }}</p>
 
             <p>
-                {{ form.profile_image.errors }}
-                {{ form.profile_image }}
+                {{ form.archive_image.errors }}
+                {{ form.archive_image }}
             </p>
             <div
               class="h-48 w-48 bg-gray-100 border rounded-lg flex items-center justify-center text-center p-2"

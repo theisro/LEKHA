@@ -126,6 +126,12 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 STATICFILES_DIRS = [STATIC_DIR]
 
+# Media Files location -> this needs to be changed for production -> apache, nginx, aws s3
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# media url can be used to access media from the website: lekha.cc/media/xyq.pdf.
+MEDIA_URL = '/media/'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
