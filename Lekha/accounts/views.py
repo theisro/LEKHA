@@ -151,6 +151,7 @@ def account_settings(request):
 
             if form2.is_valid():
                 form2.save()
+
         else:
             # if the submitted form is not the archive settings form
             if archive.archive_type == "ARTIST":
@@ -184,6 +185,7 @@ def account_settings(request):
 
             if form3.is_valid():
                 form3.save()
+
         else:
             # if the submitted form is not the privacy settings form
             form3 = AccountSettingsFormPrivacy(instance=archive, initial={'private': archive.private})
@@ -195,6 +197,7 @@ def account_settings(request):
             if form4.is_valid():
                 ## send contact us email.
                 pass
+                
         else:
             # if the submitted form is not the contact us form
             form4 = AccountSettingsFormContact()
