@@ -94,8 +94,15 @@ hidden. {% endcomment %}
             class="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-4"
           >
             <div class="flex flex-col text-left">
+              {{ form.archive_type.label_tag }} {{ form.archive_type }}
+            </div>
+            <div class="flex flex-col text-left">
+              {{ form.archive_name.label_tag }} {{ form.archive_name }}
+            </div>
+            <div class="flex flex-col text-left">
               {{ form.first_name.label_tag }} {{ form.first_name }}
             </div>
+            
             <div class="flex flex-col text-left">
               {{ form.last_name.label_tag }} {{ form.last_name }}
             </div>
@@ -206,6 +213,11 @@ hidden. {% endcomment %}
               Please choose whether you want your archive to be public or
               private. You can always change this later.
             </p>
+
+            <div class="flex flex-col text-left">
+              {{ form.private }}
+            </div>
+            
           </div>
           <div
             class="flex flex-col sm:flex-row sm:space-x-2 space-x-0 sm:space-y-0 space-y-1"

@@ -1,0 +1,122 @@
+<html lang="en"></html>
+{% extends 'navbar.html' %} {% block content %} {% load static %} {% comment %}
+Breadcrumbs {% endcomment %}
+<div
+  class="flex flex-row text-gray-600 px-8 pb-4 border-b border-black pt-16 overflow-auto"
+>
+  <div class="text-sm font-regular whitespace-nowrap">ISHAN's ARCHIVE</div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular">></div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular whitespace-nowrap">PERSONAL PRACTICE</div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular">></div>
+  &nbsp;&nbsp;
+  <div class="text-sm font-regular whitespace-nowrap">
+    {{ work.name }}
+  </div>
+</div>
+
+{% comment %} 2-col layout {% endcomment %}
+<div class="flex flex-col-reverse sm:flex-row">
+  {% comment %} Work description {% endcomment %}
+  <div class="w-full h-full sm:w-1/2 p-8 flex flex-col space-y-4">
+    <div class="flex flex-col space-y-4 w-full">
+      <div class="text-xl sm:text-4xl font-regular">
+        {{ work.name }}
+      </div>
+      <div class="text-md sm:text-lg font-light text-justify">
+        {{ work.description }}
+      </div>
+    </div>
+  </div>
+  {% comment %} File viewer {% endcomment %}
+  <div class="w-full sm:w-1/2 h-full p-8 flex flex-col space-y-2">
+    <div class="w-full aspect-ratio border border-gray-300">
+      <img
+        class="object-cover block m-auto"
+        src="https://www.jquery-az.com/html/images/banana.jpg"
+      />
+    </div>
+    <hr />
+    <div class="flex flex-row space-x-2 overflow-auto">
+      <div class="w-24 h-24">
+        <img
+          class="object-cover block m-auto"
+          src="https://www.jquery-az.com/html/images/banana.jpg"
+        />
+      </div>
+      <div class="w-24 h-24">
+        <img
+          class="object-cover block m-auto"
+          src="https://www.jquery-az.com/html/images/banana.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="m-8 border-black" />
+
+<!-- Meta data descriptors -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 p-8">
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">CLASSIFICATION</div>
+    <div>{{ work.classification }}</div>
+  </div>
+  <!-- <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">SERIES</div>
+    <div>{{ work.series }}</div>
+  </div> -->
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">AUTHORS</div>
+    <div>{{ work.authors }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">PLACE CREATED</div>
+    <div>{{ work.location }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">{{ work.cd1_name }}</div>
+    <div>{{ work.cd1_value }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">{{ work.cd2_name }}</div>
+    <div>{{ work.cd2_value }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">{{ work.cd3_name }}</div>
+    <div>{{ work.cd3_value }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">{{ work.cd4_name }}</div>
+    <div>{{ work.cd4_value }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">{{ work.cd5_name }}</div>
+    <div>{{ work.cd5_value }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">{{ work.cd6_name }}</div>
+    <div>{{ work.cd6_value }}</div>
+  </div>
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">{{ work.cd7_name }}</div>
+    <div>{{ work.cd7_value }}</div>
+  </div>
+  
+  
+  <div class="w-full flex flex-col space-y-3 py-1 border-b border-black">
+    <div class="text-gray-500">CITATION</div>
+    <div>
+      {{ work.citation }}
+    </div>
+  </div>
+</div>
+
+<hr class="border-black" />
+
+<div class="p-8 text-right">
+  <a href="#">&#8592; &nbsp;back to archive</a>
+</div>
+{% endblock %}

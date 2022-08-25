@@ -31,8 +31,10 @@ urlpatterns = [
     path('register/', account_views.register, name='register'),
     path('login/', auth_view.LoginView.as_view(authentication_form=LoginForm, template_name='accounts/login.html'), name="login"),
     path('logout/', account_views.logout_view, name='logout'),
+    path('dashboard/', archival_views.dashboard, name='dashboard'),
+    path('account_settings/', account_views.account_settings, name='account_settings'),
     path('<str:slug>/', main_views.archive, name='archive'),
-    path('dashboard', archival_views.dashboard, name='dashboard')
+    path('item/<str:slug>/', main_views.work, name='work'),
 ]
 
 # these enable the serving of static and media content to the website

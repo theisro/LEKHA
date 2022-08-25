@@ -1,0 +1,81 @@
+<html lang="en">
+  <head>
+    <style>      
+      .page {
+        width: 100vw;
+        height: calc(100vh);
+      }
+
+      .options {
+        height: 100%;
+        width: 200px;
+        background-color: #f5f5f5;
+      }
+
+      .settings_panels {
+        height: 100%;
+        width: calc(100% - 190px);
+        background-color: #000000;
+      }
+      
+    </style>
+  </head>
+</html>
+{% extends 'navbar.html' %} 
+
+{% block content %}
+{% load static %}
+
+<div style="height:200px"></div>
+
+
+<div id="page">
+  <div id="options">
+    <p>as0uhfaousg</p>
+
+  </div>
+  <div id="settings_panels">
+    <div class="settings_panel" id="user_settings">
+      <form method="post" action="/account_settings/" enctype="multipart/form-data">
+        {% csrf_token %} {% comment %} User settings {% endcomment %}
+        {{ UserForm.as_p }}
+        <input type="submit" name="user_settings" value="user_settings" />
+      </form>
+    </div>
+    
+    <div style="height:200px"></div>
+    
+    <div class="settings_panel" id="archive_settings">
+      <form method="post" action="/account_settings/" enctype="multipart/form-data">
+        {% csrf_token %} {% comment %} Archive settings {% endcomment %}
+        {{ ArchiveForm.as_p }}
+        <input type="submit" name="archive_settings" value="archive_settings" />
+      </form>
+    </div>
+    
+    <div style="height:200px"></div>
+    
+    
+    <div class="settings_panel" id="privacy_settings">
+      <form method="post" action="/account_settings/" enctype="multipart/form-data">
+        {% csrf_token %} {% comment %} Privacy settings of archive {% endcomment %}
+        {{ PrivacyForm.as_p }}
+        <input type="submit" name="privacy_settings" value="privacy_settings" />
+      </form>
+    </div>
+    
+    <div style="height:200px"></div>
+    
+    
+    <div class="settings_panel" id="contact_us">
+      <form method="post" action="/account_settings/" enctype="multipart/form-data">
+        {% csrf_token %} {% comment %} Contact us form on account settings page {% endcomment %}
+        {{ ContactForm.as_p }}
+        <input type="submit" name="contact_us" value="contact_us" />
+      </form>
+    </div>
+  </div>  
+</div>
+
+
+{% endblock %}
