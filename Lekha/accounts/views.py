@@ -197,15 +197,17 @@ def account_settings(request):
             if form4.is_valid():
                 ## send contact us email.
                 pass
-                
+
         else:
             # if the submitted form is not the contact us form
             form4 = AccountSettingsFormContact()
 
     else:
+        # if no form is submitted (page is loaded for example)
         form1 = AccountSettingsFormUser(instance=request.user, initial={'username': request.user.username, 
                                                                         'email': request.user.email
                                                                         })
+
         if archive.archive_type == "ARTIST":
             form2 = AccountSettingsFormArtistArchive(instance=archive, initial={
                                                                                 'archive_slug': archive.archive_slug, 
@@ -220,7 +222,6 @@ def account_settings(request):
                                                                                 'aword3':archive.aword3})
         elif archive.archive_type == "INSTITUTION":
             form2 = AccountSettingsFormInstitutionalArchive(instance=archive, initial={
-                
                                                                                 'archive_slug': archive.archive_slug,
                                                                                 'bio': archive.bio,
                                                                                 'insta_link': archive.insta_link,
@@ -231,7 +232,8 @@ def account_settings(request):
                                                                                 })
 
         form3 = AccountSettingsFormPrivacy(instance=archive, initial={'private': archive.private})
-        form4 = AccountSettingsFormContact()
+        form4 = AccountSettingsFormContact
+        
     return render(request, "accounts/account_settings.html", {"archive": archive, "UserForm":form1, "ArchiveForm":form2, "PrivacyForm":form3, "ContactForm":form4})
 
 

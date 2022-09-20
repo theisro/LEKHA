@@ -1,0 +1,70 @@
+{% for item, info in fileSystemParse %}
+    {% if info.open %}
+        <ul><li>
+    {% else %}
+        </li><li>
+    {% endif %}
+
+    {{ item }}
+
+    <span style="cursor: pointer; color:rgb(252, 0, 0);" 
+          hx-delete="{% url 'delete_folder' item.pk %}"
+          hx-target="#folder_view"
+          hx-confirm="Are you sure you wish to delete this folder?">
+          delete</span>
+
+
+    <button id="new_folder_button"
+    hx-post="{% url 'add_new_folder_update' item.pk %}"
+    hx-trigger="click"
+    hx-target="#new_folder_popup"
+    hx-swap="outerHTML">
+    add child</button>
+
+
+
+
+    {% for close in info.close %}
+        </li></ul>
+    {% endfor %}
+{% endfor %}
+
+
+
+<div id="new_folder_popup">
+</div>
+
+<script>
+    var newFolderPopup = document.getElementById("new_folder_popup");
+    var newFolderButton = document.getElementById("new_folder_button");
+    var newFolderClose = document.getElementById("new_folder_close");
+    var popupSubmit = document.getElementById("popup_submit");
+
+    console.log(newFolderPopup)
+
+    newFolderPopup.style.display = "none";
+
+    newFolderButton.onclick = function() {
+        console.log("new folder button clicked");
+        newFolderPopup.style.display = "block";
+    }
+
+    newFolderClose.onclick = function() {
+        console.log("close");
+        newFolderPopup.style.display = "none";
+    }
+
+    popupSubmit.onclick = function() {
+        console.log("submit");
+        newFolderPopup.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        console.log("window");
+        if (event.target == newFolderPopup) {
+            newFolderPopup.style.display = "none";
+        }
+    }
+
+
+</script>

@@ -37,6 +37,15 @@ urlpatterns = [
     path('item/<str:slug>/', main_views.work, name='work'),
 ]
 
+htmx_patterns = [
+    path('add_folder/<int:pk>', archival_views.add_folder, name='add_folder'),
+    path('delete_folder/<int:pk>', archival_views.delete_folder, name='delete_folder'),
+    # path('add_work/<int:pk>', archival_views.add_work, name='add_work'),
+    # path('delete_work/<int:pk>', archival_views.delete_work, name='delete_work'),
+]
+
+urlpatterns += htmx_patterns
+
 # these enable the serving of static and media content to the website
 # during development. This needs to be changed to something more robust during production.
 if settings.DEBUG:

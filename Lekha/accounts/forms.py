@@ -76,14 +76,27 @@ class LoginForm(AuthenticationForm):
       {'class': 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'}
     )
 
+
+
+
+##################################
+##### Account Settings Forms #####
+##################################
+
 class AccountSettingsFormUser(forms.ModelForm):
     username = forms.SlugField(required=True)
     email = forms.EmailField(required=True)
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('username', 'email', 'first_name', 'last_name')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'acinput'}),
+        }
 
+        
     def clean_email(self):
         username = self.cleaned_data.get('username')
         email = self.cleaned_data.get('email')

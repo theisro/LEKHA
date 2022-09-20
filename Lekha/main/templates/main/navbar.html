@@ -38,6 +38,9 @@
         },
       };
     </script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
   </head>
   <body>
     <div class="w-screen min-h-full flex flex-col">
@@ -50,7 +53,7 @@
           <a href="/" class="text-lg font-medium">LEKHA</a>
         </div>
 
-        <a class="text-sm font-medium py-2 px-4 block hover:text-lblue" href="/"
+        <a class="text-sm font-medium py-2 px-4 block hover:text-lblue" href="/dashboard"
           >GO TO DASHBOARD</a
         >
 
@@ -90,7 +93,7 @@
                 <div class="py-2 px-0 block">{{ user.get_username }}</div>
               </li>
               <li class="text-sm">
-                <a class="py-2 px-0 block hover:text-lblue" href="/dashboard"
+                <a class="py-2 px-0 block hover:text-lblue" href="/dashboard/"
                   >DASHBOARD</a
                 >
               </li>
@@ -100,7 +103,7 @@
                 >
               </li>
               <li class="text-sm">
-                <a class="py-2 px-0 block hover:text-lblue" href="/account_settings"
+                <a class="py-2 px-0 block hover:text-lblue" href="/account_settings/"
                   >ACCOUNT SETTINGS</a
                 >
               </li>
@@ -108,7 +111,7 @@
                 <a class="py-2 px-0 block hover:text-lblue" href="/">CONNECT</a>
               </li>
               <li class="text-sm">
-                <a class="py-2 px-0 block hover:text-lblue" href="/about"
+                <a class="py-2 px-0 block hover:text-lblue" href="/about/"
                   >ABOUT</a
                 >
               </li>
@@ -259,5 +262,14 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // Add CSRF token to all htmx requests --> https://htmx.org/learn/csrf/
+      // essential for POST requests
+      document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'
+      })
+    </script>
+    
   </body>
 </html>

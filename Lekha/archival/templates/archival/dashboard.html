@@ -1,0 +1,91 @@
+<html lang="en">
+  <head>
+    <style>
+      #new_folder_popup {
+        /* display: none; */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fefefe;
+        border: 1px solid #888;
+        width: 50%;
+        height:50%;
+      }
+
+      .dashboard-popup-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+      }
+
+      #new_folder_close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      #newfolderform {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 5;
+        transform: translate(-50%, -50%);
+        background-color: #fefefe;
+        padding: 20px;
+        width: 80%;
+        height: 80%;
+      }
+
+      #popup_submit {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        background-color: #b2b2b2;
+        padding: 20px;
+        width: 60%;
+        height: 50px;
+      }
+      
+      .dashboard_inputs {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        top: 30%;
+        left: 20%;
+        width: 60%;
+        height: 40px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+</html>
+{% extends 'navbar.html' %} 
+
+{% block content %}
+{% load static %}
+
+<div style="height: 200px; width: 100%;"></div>
+
+<p>
+  archive: {{ archive.archive_slug }}, filesystem: {{ filesystem.name }}
+</p>
+
+<div id="folder_view">
+  {% include 'partials/folder_view.html' %}
+</div>
+
+
+
+
+{% endblock %}
