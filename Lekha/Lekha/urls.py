@@ -35,11 +35,16 @@ urlpatterns = [
     path('account_settings/', account_views.account_settings, name='account_settings'),
     path('<str:slug>/', main_views.archive, name='archive'),
     path('item/<str:slug>/', main_views.work, name='work'),
+    # path('dashboard/edit_work/<str:work_slug>/', archival_views.edit_work, name='edit_work'),
+    path('dashboard/add_work/<int:folder_pk>/', archival_views.add_work, name='add_work'),
+    path('dashboard/add_media_to_work/<int:work_pk>', archival_views.add_media_to_work, name='add_media_to_work'),
+    path('dashboard/add_folder/<int:folder_pk>', archival_views.add_folder, name='add_folder'),
 ]
 
 htmx_patterns = [
     path('add_folder/<int:pk>', archival_views.add_folder, name='add_folder'),
     path('delete_folder/<int:pk>', archival_views.delete_folder, name='delete_folder'),
+    path('delete_work/<int:pk>', archival_views.delete_work, name='delete_work'),
     # path('add_work/<int:pk>', archival_views.add_work, name='add_work'),
     # path('delete_work/<int:pk>', archival_views.delete_work, name='delete_work'),
 ]
@@ -53,4 +58,5 @@ if settings.DEBUG:
                           document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, 
                           document_root=settings.MEDIA_ROOT)
+
 

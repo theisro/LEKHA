@@ -1,0 +1,52 @@
+<html lang="en">
+  <head>
+    <style>
+        input[type=submit] {
+        width: 150px;
+        background-color: grey;
+        color: white;
+        text-align: center;
+        padding: 10px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type=submit]:hover {
+        background-color: #868686;
+      }
+
+      input[type=text], input[type=email], textarea {
+        width: 400px;
+        padding: 8px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid rgb(184, 184, 184);
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      
+    </style>
+  </head>
+</html>
+{% extends 'navbar.html' %} 
+
+{% block content %}
+{% load static %}
+
+<div style="height: 200px; width: 100%;"></div>
+      <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %} {% comment %} Work Form {% endcomment %}
+        {{ workForm.as_p }}
+        <input type="submit" name="workresponse" value="save" />
+      </form>
+    
+      <!-- <form method="post" action="dashboard/add_work/" enctype="multipart/form-data">
+        {% csrf_token %} {% comment %} Media Files {% endcomment %}
+        {{ mediaForm.as_p }}
+        <input type="submit" name="mediaresponse" value="save" />
+      </form> -->
+
+
+{% endblock %}

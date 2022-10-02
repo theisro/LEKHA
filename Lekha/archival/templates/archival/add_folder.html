@@ -1,0 +1,46 @@
+<html lang="en">
+  <head>
+    <style>
+        input[type=submit] {
+        width: 150px;
+        background-color: grey;
+        color: white;
+        text-align: center;
+        padding: 10px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      input[type=submit]:hover {
+        background-color: #868686;
+      }
+
+      input[type=text], input[type=email], textarea {
+        width: 400px;
+        padding: 8px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid rgb(184, 184, 184);
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      
+    </style>
+  </head>
+</html>
+{% extends 'navbar.html' %} 
+
+{% block content %}
+{% load static %}
+
+<div style="height: 200px; width: 100%;"></div>
+      <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {% comment %} Folder Form {% endcomment %}
+        <input type="text" name="folderName" class="dashboard_inputs">
+        <input type="submit" name="workresponse" value="save" />
+      </form>
+
+{% endblock %}

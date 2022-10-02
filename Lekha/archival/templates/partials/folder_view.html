@@ -1,70 +1,44 @@
-{% for item, info in fileSystemParse %}
+{% for folder, info in fileSystemParse %}
     {% if info.open %}
         <ul><li>
     {% else %}
         </li><li>
     {% endif %}
 
-    {{ item }}
+    <span>{{ info.divider }}</span>{{ folder }}
 
-    <span style="cursor: pointer; color:rgb(252, 0, 0);" 
-          hx-delete="{% url 'delete_folder' item.pk %}"
-          hx-target="#folder_view"
-          hx-confirm="Are you sure you wish to delete this folder?">
-          delete</span>
+    
 
+    <a href="/dashboard/add_folder/{{ folder.pk }}" style="color:green">add child</a>
 
-    <button id="new_folder_button"
-    hx-post="{% url 'add_new_folder_update' item.pk %}"
-    hx-trigger="click"
-    hx-target="#new_folder_popup"
-    hx-swap="outerHTML">
-    add child</button>
+    
+    <a href="/dashboard/add_work/{{ folder.pk }}" style="color:blue">Add work</a>
 
+    <span hx-delete="{% url 'delete_folder' folder.pk %}" hx-target="#folder_view" hx-confirm="Are you sure you wish to delete this folder?" style="color:red; cursor: pointer">delete</span>
 
+    {% if info.open %}
+        <ul>
+    {% endif %}
 
+    {% if info.close %}
+        </ul>
+    {% endif %}
+    
 
-    {% for close in info.close %}
+    {% if info.close %}
+        </li></ul>
+    {% endif %}
+
+    {% for work, work_info in info.works %}
+        <ul><li>
+            <span>{{ work_info.divider }}</span><a href="/work/{{ work.work_slug }}" style="color: brown;">Work: {{ work.name }}</a> <span hx-delete="{% url 'delete_work' work.pk %}" hx-target="#folder_view" hx-confirm="Are you sure you wish to delete this work?" style="color:red; cursor: pointer">delete</span>
+
         </li></ul>
     {% endfor %}
+
+
+
+    <!-- {% for close in info.close %}
+        </li></ul>
+    {% endfor %} -->
 {% endfor %}
-
-
-
-<div id="new_folder_popup">
-</div>
-
-<script>
-    var newFolderPopup = document.getElementById("new_folder_popup");
-    var newFolderButton = document.getElementById("new_folder_button");
-    var newFolderClose = document.getElementById("new_folder_close");
-    var popupSubmit = document.getElementById("popup_submit");
-
-    console.log(newFolderPopup)
-
-    newFolderPopup.style.display = "none";
-
-    newFolderButton.onclick = function() {
-        console.log("new folder button clicked");
-        newFolderPopup.style.display = "block";
-    }
-
-    newFolderClose.onclick = function() {
-        console.log("close");
-        newFolderPopup.style.display = "none";
-    }
-
-    popupSubmit.onclick = function() {
-        console.log("submit");
-        newFolderPopup.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        console.log("window");
-        if (event.target == newFolderPopup) {
-            newFolderPopup.style.display = "none";
-        }
-    }
-
-
-</script>

@@ -16,4 +16,3 @@ class MyAdmin(TreeAdmin):
     form = movenodeform_factory(Folder)
 
 admin.site.register(Folder, MyAdmin)
-

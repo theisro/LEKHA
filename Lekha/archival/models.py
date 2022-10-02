@@ -17,7 +17,6 @@ class Archive(models.Model):
     Contains all the metadata and pertinent info relevant to an archive. 
     There are a few different archive types, each of which has metadata that is relevant to only those archive types,
     for example artist archives are an archive of an individual's work, and will therefore have fields such as first name, cv, etc.
-
     '''
     ## core
     #Archive Types
@@ -91,18 +90,15 @@ class Folder(MP_Node):
     '''
     MP_Node uses raw SQL queries so you have to 'reload' a node each time you want to add children or siblings.
     For example, you cant do
-
     filesystem = Folder.add_root(name = "Archive0")
     node = filesystem.add_child(name="Paintings")
-
     Instead you have to retrieve the node again:
-
     filesystem = Folder.add_root(name = "Archive0")
     paintings = Folder.objects.get(filesystem.pk).add_child(name="Paintings")
-
     '''
     name = models.CharField(max_length=30)
     archive = models.ForeignKey(Archive, on_delete=models.CASCADE, null=True, blank=True, default=None)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, default=get_current_user())
 
     # tree specific attributes
     node_order_index = models.IntegerField(
@@ -116,6 +112,11 @@ class Folder(MP_Node):
 
     def __str__(self):
         return 'Folder: {}'.format(self.name)
+
+    def save(self):
+        user = get_current_user()
+        self.creator = user
+        return super(Folder, self).save()
 
 
 
@@ -189,7 +190,7 @@ class MediaFile(models.Model):
     # core
     #### Need to decide if media files can exist in folders or only in works ---> did we decide that the archive builder can also hold media files?
     work = models.ForeignKey(Work, on_delete=models.CASCADE)
-    folder = models.ForeignKey(Folder, on_delete=models.CASCADE)
+    folder = models.ForeignKey(Folder, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=30)
     time_created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True,
@@ -211,3 +212,6 @@ class MediaFile(models.Model):
         self.modified = timezone.now() # set the modified field to the current date and time. This is reassigned everytime the model is updated.
 
         return super(MediaFile, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return 'Media_file: {}'.format(self.name)

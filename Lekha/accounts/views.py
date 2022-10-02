@@ -50,7 +50,6 @@ def onboarding(response):
                             twitter_link=form.cleaned_data.get("twitter_link"),
                             cv = cv,
                             archive_image = archive_image,
-
                             private=private,
                             archive_type=archive_type,
                             archive_slug=archive_slug,

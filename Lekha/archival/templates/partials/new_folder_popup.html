@@ -3,11 +3,12 @@
     <form action="/dashboard/" method="post" id="newfolderform">
         {% csrf_token %}
         <input type="text" name="folderName" class="dashboard_inputs">
+        <input type="text" name="itempk" style="display:none;" >
         <input type="submit" value="Add Category" name="addCategory" id="popup_submit">
     </form>
 
     <span style="cursor: pointer; color:rgb(252, 0, 0);" 
-          hx-delete="{% url 'delete_folder' {{ pk }} %}"
+          hx-delete="{% url 'delete_folder' {{ pk }}  %}"
           hx-target="#folder_view"
           hx-confirm="Are you sure you wish to delete this folder?">
           delete</span>
