@@ -65,20 +65,26 @@ def get_filesystem_structure(folder):
 
     return file_list
 
-# Create your views here.
+@login_required
 def dashboard(request):
-    user = get_current_user()
-    archive = Archive.objects.get(creator=user)
-    filesystem = Folder.objects.get(archive=archive)
+    '''
+    The dashboard is the main page of the archival app. It shows the filesystem of the logged in user.
 
-    # if request.method == "POST":
-    #     if 'addCategory' in request.POST:
-    #         category_name = request.POST['folderName']
-    #         filesystem = Folder.objects.get(pk=filesystem.pk)
-    #         filesystem.add_child(name=category_name)
-            
-    
-    return render(request, "archival/dashboard.html", {'filesystem': filesystem, "archive": archive, "fileSystemParse": get_filesystem_structure(filesystem)})
+    If the user is not logged in, they are redirected to the login page.
+
+    If the user is logged in, they are shown the filesystem of the archive that they created.
+    '''
+    # check if the user is logged in
+    user = get_current_user()
+
+    if user.is_authenticated:
+        archive = Archive.objects.get(creator=user)
+        filesystem = Folder.objects.get(archive=archive)            
+        
+        return render(request, "archival/dashboard.html", {'filesystem': filesystem, "archive": archive, "fileSystemParse": get_filesystem_structure(filesystem)})
+    else:
+        return redirect('login')
+
 
 
 
@@ -120,7 +126,7 @@ def delete_folder(request, pk):
     filesystem = Folder.objects.get(archive=Archive.objects.get(creator=get_current_user()))
     return render(request, "partials/folder_view.html", {'fileSystemParse': get_filesystem_structure(filesystem)})
 
-
+@login_required
 def add_work(request, folder_pk):
     '''
     Add a work to the filesystem.
@@ -184,7 +190,7 @@ def delete_work(request, pk):
     filesystem = Folder.objects.get(archive=Archive.objects.get(creator=get_current_user()))
     return render(request, "partials/folder_view.html", {'fileSystemParse': get_filesystem_structure(filesystem)})
 
-
+@login_required
 def add_media_to_work(request, work_pk):
     '''
     Add media to a work.
