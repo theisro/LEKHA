@@ -141,5 +141,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Other configurations
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_REDIRECT_URL = 'index' # URL redirecting after a successful authentication
+LOGIN_REDIRECT_URL = 'dashboard' # URL redirecting after a successful authentication
 

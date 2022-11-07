@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .forms import OnboardingForm, UserRegisterForm, AccountSettingsFormUser, AccountSettingsFormArtistArchive, AccountSettingsFormInstitutionalArchive, AccountSettingsFormPrivacy, AccountSettingsFormContact
+from .forms import LoginForm, OnboardingForm, UserRegisterForm, AccountSettingsFormUser, AccountSettingsFormArtistArchive, AccountSettingsFormInstitutionalArchive, AccountSettingsFormPrivacy, AccountSettingsFormContact
 from archival.models import Archive, Folder
 
 from django.contrib.auth.views import LoginView    
@@ -246,7 +246,7 @@ def account_settings(request):
 #             # if the inputs are all valid, log in existing user
 #             form.save()
 #             # then redirect home
-#             return redirect('index')
+#             return redirect('archival/dashboard')
 #     else:
 #         form = LoginForm()
 
